@@ -19,8 +19,8 @@ import java.sql.SQLException;
  * Created by misswmn on 2017/1/2.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.orange.core.*.web"}, lazyInit = true)
-@PropertySource("classpath:/jdbc.properties")
+@ComponentScan(basePackages = {"com.orange.core"}, lazyInit = true)
+@PropertySource(value = {"classpath:/jdbc.properties"})
 public class AppDataConfig {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AppDataConfig.class);
@@ -33,34 +33,52 @@ public class AppDataConfig {
     @Value("${jdbc.driverClassName}")
     private String driverClass;
     @Value("${jdbc.initialSize}")
-    private String initialSize;
+    private int initialSize;
     @Value("${jdbc.maxActive}")
-    private String maxActive;
+    private int maxActive;
     @Value("${jdbc.minIdle}")
-    private String minIdle;
+    private int minIdle;
     @Value("${jdbc.maxWait}")
-    private String maxWait;
+    private int maxWait;
+    @Value("${jdbc.timeBetweenEvictionRunsMillis}")
+    private int timeBetweenEvictionRunsMillis;
+    @Value("${jdbc.minEvictableIdleTimeMillis}")
+    private int minEvictableIdleTimeMillis;
+    @Value("${jdbc.validationQuery}")
+    private String validationQuery;
+    @Value("${jdbc.testWhileIdle}")
+    private boolean testWhileIdle;
+    @Value("${jdbc.testOnBorrow}")
+    private boolean testOnBorrow;
+    @Value("${jdbc.testOnReturn}")
+    private boolean testOnReturn;
+    @Value("${jdbc.poolPreparedStatements}")
+    private boolean poolPreparedStatements;
+    @Value("${jdbc.maxPoolPreparedStatementPerConnectionSize}")
+    private int maxPoolPreparedStatementPerConnectionSize;
+    @Value("${jdbc.filters}")
+    private String filters;
 
     @Bean
     public DataSource dataSource() throws SQLException {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/orange");
-        dataSource.setUsername("root");
-        dataSource.setPassword("");
-        dataSource.setFilters("stat");
-        dataSource.setInitialSize(1);
-        dataSource.setMaxActive(20);
-        dataSource.setMaxWait(60 * 1000);
-        dataSource.setMinIdle(1);
-        dataSource.setTimeBetweenEvictionRunsMillis(60 * 1000);
-        dataSource.setMinEvictableIdleTimeMillis(30 * 1000);
-        dataSource.setValidationQuery("SELECT 'x' FROM ");
-        dataSource.setTestWhileIdle(true);
-        dataSource.setTestOnBorrow(false);
-        dataSource.setTestOnReturn(false);
-        dataSource.setPoolPreparedStatements(true);
-        dataSource.setMaxPoolPreparedStatementPerConnectionSize(50);
+        dataSource.setDriverClassName(driverClass);
+        dataSource.setUrl(jdbcurl);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        dataSource.setFilters(filters);
+        dataSource.setInitialSize(initialSize);
+        dataSource.setMaxActive(maxActive);
+        dataSource.setMaxWait(maxWait);
+        dataSource.setMinIdle(minIdle);
+        dataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
+        dataSource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+        dataSource.setValidationQuery(validationQuery);
+        dataSource.setTestWhileIdle(testWhileIdle);
+        dataSource.setTestOnBorrow(testOnBorrow);
+        dataSource.setTestOnReturn(testOnReturn);
+        dataSource.setPoolPreparedStatements(poolPreparedStatements);
+        dataSource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
         return dataSource;
     }
 
@@ -76,7 +94,7 @@ public class AppDataConfig {
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer configurer = new MapperScannerConfigurer();
-        configurer.setBasePackage("com.orange.*.dao");
+        configurer.setBasePackage("com.orange.core.dao");
         configurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
         return configurer;
     }

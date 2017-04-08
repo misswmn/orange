@@ -18,8 +18,9 @@ public class WebAppInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext container) throws ServletException {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        container.addListener(new ContextLoaderListener(context));
+        context.register(AppDataConfig.class);
 
+        container.addListener(new ContextLoaderListener(context));
         AnnotationConfigWebApplicationContext dispatcherServlet = new AnnotationConfigWebApplicationContext();
         dispatcherServlet.register(WebMvcConfig.class);
         ServletRegistration.Dynamic dispatcher = container.addServlet("springMvc", new DispatcherServlet(dispatcherServlet));

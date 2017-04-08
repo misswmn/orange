@@ -32,7 +32,6 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.orange.*.web"}, lazyInit = true)
-@PropertySource(value = {"classpath:/jdbc.properties"})
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     private static final Charset charset = Charset.forName("UTF-8");
