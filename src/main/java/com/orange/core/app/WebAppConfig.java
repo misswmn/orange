@@ -1,13 +1,15 @@
 package com.orange.core.app;
 
+import com.orange.core.client.JedisClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
-
-import javax.annotation.PostConstruct;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * Created by misswmn on 2016/12/27.
@@ -19,12 +21,38 @@ import javax.annotation.PostConstruct;
 public class WebAppConfig {
 
     @Value("${redis.host}")
-    private String host;
+    private String host = "127.0.0.1";
     @Value("${redis.port}")
-    private String port;
+    private int port = 6379;
+    @Value("${redis.timeout}")
+    private int redisTimeout = 50_000;
+    @Value("${redis.password}")
+    private String redisPassword = "";
+    @Value("${redis.database}")
+    private int redisDatabase = 0;
 
-    @PostConstruct
-    private void init() {
-        System.out.println(this.host);
+    @Value("${redis.pool.maxIdle}")
+    private int redisMaxIdle = 50_000;
+    @Value("${redis.pool.minIdle}")
+    private int redisMinIdle = 50_000;
+    @Value("${redis.pool.maxTotal}")
+    private int redisMaxTotal = 50;
+    @Value("${redis.pool.maxWaitMillis}")
+    private int redisMaxWaitMillis = 50_000;
+
+    @Bean
+    public JedisClient jedisClient() {
+        JedisClient jedisClient = new JedisClient();
+        jedisClient.setJedisPool(jedisPool());
+        return jedisClient;
+    }
+
+    private JedisPool jedisPool() {
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        jedisPoolConfig.setMaxIdle(redisMaxIdle);
+        jedisPoolConfig.setMinIdle(redisMinIdle);
+        jedisPoolConfig.setMaxTotal(redisMaxTotal);
+        jedisPoolConfig.setMaxWaitMillis(redisMaxWaitMillis);
+        return new JedisPool(jedisPoolConfig, host, port, redisTimeout, redisPassword, redisDatabase);
     }
 }

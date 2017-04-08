@@ -3,8 +3,6 @@ package com.orange.core.app;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +19,6 @@ import java.util.Objects;
 @Configuration
 @PropertySource(value = {"classpath:orange.properties"})
 public class AppDataConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AppDataConfig.class);
     @Value("${jdbc.url}")
     private String jdbcurl = "jdbc:mysql://localhost:3306/orange";
     @Value("${jdbc.username}")
@@ -59,7 +56,6 @@ public class AppDataConfig {
 
     @Bean
     public DataSource dataSource() throws SQLException {
-        Objects.requireNonNull(driverClass);
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(jdbcurl);
@@ -85,7 +81,7 @@ public class AppDataConfig {
     public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setTypeAliasesPackage("com.orange.*.model");
+        sessionFactory.setTypeAliasesPackage("com.orange.core.domain");
         sessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
         return sessionFactory;
     }
