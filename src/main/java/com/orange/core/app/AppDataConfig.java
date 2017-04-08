@@ -19,7 +19,7 @@ import java.sql.SQLException;
  * Created by misswmn on 2017/1/2.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.orange.*.controller", "com.orange.*.*.controller", "com.orange.*.tags"}, lazyInit = true)
+@ComponentScan(basePackages = {"com.orange.core.*.web"}, lazyInit = true)
 @PropertySource("classpath:/jdbc.properties")
 public class AppDataConfig {
 

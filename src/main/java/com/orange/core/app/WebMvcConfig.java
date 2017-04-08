@@ -31,7 +31,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.orange.*.controller", "com.orange.*.*.controller", "com.orange.*.tags"}, lazyInit = true)
+@ComponentScan(basePackages = {"com.orange.*.web"}, lazyInit = true)
 @PropertySource(value = {"classpath:/jdbc.properties"})
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
