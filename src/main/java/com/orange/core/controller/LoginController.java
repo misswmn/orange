@@ -1,4 +1,4 @@
-package com.orange.core.web;
+package com.orange.core.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

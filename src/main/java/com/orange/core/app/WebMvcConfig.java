@@ -4,7 +4,6 @@ import freemarker.template.utility.XmlEscape;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -31,7 +30,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.orange.*.web"}, lazyInit = true)
+@ComponentScan(basePackages = {"com.orange.core.controller"})
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     private static final Charset charset = Charset.forName("UTF-8");
@@ -99,11 +98,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public XmlEscape xmlEscape() {
-        return new XmlEscape();
-    }
-
-    @Bean
     public FreeMarkerConfigurer freeMarkerConfigurer() {
         FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
         configurer.setTemplateLoaderPath("/WEB-INF/ftl/");
@@ -117,11 +111,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         settings.put("datetime_format", "yyyy-MM-dd HH:mm:ss");
         settings.put("date_format", "yyyy-MM-dd");
         settings.put("number_format", "#.##");
-        settings.put("auto_import", "common/config/top.ftl as _top," +
-                "common/config/left.ftl as _left," +
-                "common/config/menu.ftl as _menu"
-        );
         configurer.setFreemarkerSettings(settings);
         return configurer;
+    }
+
+    @Bean
+    public XmlEscape xmlEscape() {
+        return new XmlEscape();
     }
 }

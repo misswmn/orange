@@ -7,6 +7,7 @@ package com.orange.core.service;
 
 import com.orange.core.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,6 +21,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    @Value("${redis.host}")
+    private String host;
 
     @Override
     public void delete(long id) {

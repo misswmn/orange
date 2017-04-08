@@ -7,60 +7,59 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  * Created by misswmn on 2017/1/2.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.orange.core"}, lazyInit = true)
-@PropertySource(value = {"classpath:/jdbc.properties"})
+@PropertySource(value = {"classpath:orange.properties"})
 public class AppDataConfig {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(AppDataConfig.class);
     @Value("${jdbc.url}")
-    private String jdbcurl;
+    private String jdbcurl = "jdbc:mysql://localhost:3306/orange";
     @Value("${jdbc.username}")
-    private String username;
+    private String username = "root";
     @Value("${jdbc.password}")
-    private String password;
+    private String password = "";
     @Value("${jdbc.driverClassName}")
-    private String driverClass;
+    private String driverClass = "com.mysql.jdbc.Driver";
     @Value("${jdbc.initialSize}")
-    private int initialSize;
+    private int initialSize = 3;
     @Value("${jdbc.maxActive}")
-    private int maxActive;
+    private int maxActive = 6000;
     @Value("${jdbc.minIdle}")
-    private int minIdle;
+    private int minIdle = 6000;
     @Value("${jdbc.maxWait}")
-    private int maxWait;
+    private int maxWait = 6000;
     @Value("${jdbc.timeBetweenEvictionRunsMillis}")
-    private int timeBetweenEvictionRunsMillis;
+    private int timeBetweenEvictionRunsMillis = 60000;
     @Value("${jdbc.minEvictableIdleTimeMillis}")
-    private int minEvictableIdleTimeMillis;
+    private int minEvictableIdleTimeMillis = 30000;
     @Value("${jdbc.validationQuery}")
-    private String validationQuery;
+    private String validationQuery = "select 'x' ";
     @Value("${jdbc.testWhileIdle}")
-    private boolean testWhileIdle;
+    private boolean testWhileIdle = true;
     @Value("${jdbc.testOnBorrow}")
-    private boolean testOnBorrow;
+    private boolean testOnBorrow = true;
     @Value("${jdbc.testOnReturn}")
-    private boolean testOnReturn;
+    private boolean testOnReturn = false;
     @Value("${jdbc.poolPreparedStatements}")
-    private boolean poolPreparedStatements;
+    private boolean poolPreparedStatements = true;
     @Value("${jdbc.maxPoolPreparedStatementPerConnectionSize}")
-    private int maxPoolPreparedStatementPerConnectionSize;
+    private int maxPoolPreparedStatementPerConnectionSize = 20;
     @Value("${jdbc.filters}")
-    private String filters;
+    private String filters = "stat";
 
     @Bean
     public DataSource dataSource() throws SQLException {
+        Objects.requireNonNull(driverClass);
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(jdbcurl);

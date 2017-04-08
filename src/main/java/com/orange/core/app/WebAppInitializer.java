@@ -18,14 +18,13 @@ public class WebAppInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext container) throws ServletException {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(AppDataConfig.class);
-
+        context.register(AppDataConfig.class, WebAppConfig.class);
         container.addListener(new ContextLoaderListener(context));
-        AnnotationConfigWebApplicationContext dispatcherServlet = new AnnotationConfigWebApplicationContext();
-        dispatcherServlet.register(WebMvcConfig.class);
-        ServletRegistration.Dynamic dispatcher = container.addServlet("springMvc", new DispatcherServlet(dispatcherServlet));
-        dispatcher.setLoadOnStartup(1);
+
+        context.register(WebMvcConfig.class);
+        ServletRegistration.Dynamic dispatcher = container.addServlet("orange", new DispatcherServlet(context));
+        dispatcher.setLoadOnStartup(3);
         dispatcher.addMapping("*.shtml");
-        container.addFilter("encodingFilter", new CharacterEncodingFilter("UTF-8", true));
+        container.addFilter("encodingFilter", new CharacterEncodingFilter("UTF-8", true)).addMappingForUrlPatterns(null, true, "/*");
     }
 }
