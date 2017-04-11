@@ -20,24 +20,24 @@ import redis.clients.jedis.JedisPoolConfig;
 @PropertySource(value = {"classpath:/orange.properties"})
 public class WebAppConfig {
 
-    @Value("${redis.host}")
-    private String host = "127.0.0.1";
-    @Value("${redis.port}")
+    //    @Value("${redis.host}")
+    private String host = "99.48.18.212";
+    //    @Value("${redis.port}")
     private int port = 6379;
-    @Value("${redis.timeout}")
+    //    @Value("${redis.timeout}")
     private int redisTimeout = 50_000;
-    @Value("${redis.password}")
-    private String redisPassword = "";
-    @Value("${redis.database}")
+    //    @Value("${redis.password}")
+    private String redisPassword = "1qaz@WSX";
+    //    @Value("${redis.database}")
     private int redisDatabase = 0;
 
-    @Value("${redis.pool.maxIdle}")
+    //    @Value("${redis.pool.maxIdle}")
     private int redisMaxIdle = 50_000;
-    @Value("${redis.pool.minIdle}")
+    //    @Value("${redis.pool.minIdle}")
     private int redisMinIdle = 50_000;
-    @Value("${redis.pool.maxTotal}")
+    //    @Value("${redis.pool.maxTotal}")
     private int redisMaxTotal = 50;
-    @Value("${redis.pool.maxWaitMillis}")
+    //    @Value("${redis.pool.maxWaitMillis}")
     private int redisMaxWaitMillis = 50_000;
 
     @Bean

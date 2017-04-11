@@ -19,39 +19,39 @@ import java.util.Objects;
 @Configuration
 @PropertySource(value = {"classpath:orange.properties"})
 public class AppDataConfig {
-    @Value("${jdbc.url}")
+    //    @Value("${jdbc.url}")
     private String jdbcurl = "jdbc:mysql://localhost:3306/orange";
-    @Value("${jdbc.username}")
+    //    @Value("${jdbc.username}")
     private String username = "root";
-    @Value("${jdbc.password}")
-    private String password = "";
-    @Value("${jdbc.driverClassName}")
+    //    @Value("${jdbc.password}")
+    private String password = "root";
+    //    @Value("${jdbc.driverClassName}")
     private String driverClass = "com.mysql.jdbc.Driver";
-    @Value("${jdbc.initialSize}")
+    //    @Value("${jdbc.initialSize}")
     private int initialSize = 3;
-    @Value("${jdbc.maxActive}")
+    //    @Value("${jdbc.maxActive}")
     private int maxActive = 6000;
-    @Value("${jdbc.minIdle}")
+    //    @Value("${jdbc.minIdle}")
     private int minIdle = 6000;
-    @Value("${jdbc.maxWait}")
+    //    @Value("${jdbc.maxWait}")
     private int maxWait = 6000;
-    @Value("${jdbc.timeBetweenEvictionRunsMillis}")
+    //    @Value("${jdbc.timeBetweenEvictionRunsMillis}")
     private int timeBetweenEvictionRunsMillis = 60000;
-    @Value("${jdbc.minEvictableIdleTimeMillis}")
+    //    @Value("${jdbc.minEvictableIdleTimeMillis}")
     private int minEvictableIdleTimeMillis = 30000;
-    @Value("${jdbc.validationQuery}")
+    //    @Value("${jdbc.validationQuery}")
     private String validationQuery = "select 'x' ";
-    @Value("${jdbc.testWhileIdle}")
+    //    @Value("${jdbc.testWhileIdle}")
     private boolean testWhileIdle = true;
-    @Value("${jdbc.testOnBorrow}")
+    //    @Value("${jdbc.testOnBorrow}")
     private boolean testOnBorrow = true;
-    @Value("${jdbc.testOnReturn}")
+    //    @Value("${jdbc.testOnReturn}")
     private boolean testOnReturn = false;
-    @Value("${jdbc.poolPreparedStatements}")
+    //    @Value("${jdbc.poolPreparedStatements}")
     private boolean poolPreparedStatements = true;
-    @Value("${jdbc.maxPoolPreparedStatementPerConnectionSize}")
+    //    @Value("${jdbc.maxPoolPreparedStatementPerConnectionSize}")
     private int maxPoolPreparedStatementPerConnectionSize = 20;
-    @Value("${jdbc.filters}")
+    //    @Value("${jdbc.filters}")
     private String filters = "stat";
 
     @Bean

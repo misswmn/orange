@@ -25,6 +25,6 @@ public class UserServiceTest {
 
     @Test
     public void testDeleteById() {
-        userService.delete(123L);
+        userService.delete(4);
     }
 }
