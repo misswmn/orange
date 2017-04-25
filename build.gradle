@@ -11,8 +11,6 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile fileTree(dir: 'src/lib', include: '*.jar')
     compile 'org.springframework:spring-context:4.2.5.RELEASE',
             'org.springframework:spring-core:4.2.5.RELEASE',
             'org.springframework:spring-beans:4.2.5.RELEASE',
@@ -93,6 +91,7 @@ dependencies {
             'com.eaio.uuid:uuid:3.2',
             'com.google.guava:guava:20.0',
             'com.google.code.gson:gson:2.3.1'
+    testCompile 'junit:junit:4.12'
 }
 
 war {
