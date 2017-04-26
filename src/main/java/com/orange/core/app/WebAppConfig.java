@@ -4,6 +4,7 @@ import com.orange.core.client.JedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
@@ -18,6 +19,7 @@ import redis.clients.jedis.JedisPoolConfig;
 @PropertySources(
         @PropertySource(value = {"classpath:orange.properties"})
 )
+@ComponentScan(basePackages = "com.orange.core")
 public class WebAppConfig {
 
     @Value("${redis.host}")
@@ -45,8 +47,6 @@ public class WebAppConfig {
 
     @Bean
     public JedisClient jedisClient() {
-        System.out.println(redisPassword);
-        System.out.println(host);
         JedisClient jedisClient = new JedisClient();
         jedisClient.setJedisPool(jedisPool());
         return jedisClient;
