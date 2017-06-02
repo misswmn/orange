@@ -6,8 +6,11 @@
 package com.orange.core.service;
 
 import com.orange.core.dao.UserMapper;
+import com.orange.core.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author wangmn
@@ -25,4 +28,11 @@ public class UserServiceImpl implements UserService {
     public void delete(long id) {
         userMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public List<User> findAll() {
+        return userMapper.findAll();
+    }
+
+
 }

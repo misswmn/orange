@@ -5,6 +5,10 @@
  */
 package com.orange.core.dao;
 
+import com.orange.core.domain.User;
+
+import java.util.List;
+
 /**
  * @author wangmn
  * @version 1.0
@@ -14,4 +18,5 @@ package com.orange.core.dao;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Long id);
+    List<User> findAll();
 }

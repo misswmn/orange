@@ -5,6 +5,7 @@
  */
 package com.orange.core.util;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,5 +51,12 @@ public class RegexUtil {
         return src;
     }
 
-
+    public static void main(String[] args) {
+        String result = "将于{time}到货，请{to}查收.";
+        Map<String, String> params = new HashMap<>();
+        params.put("time", "2017-05-05");
+        params.put("to", "张三");
+        String target = matchValue(result, params);
+        System.out.println(target);
+    }
 }

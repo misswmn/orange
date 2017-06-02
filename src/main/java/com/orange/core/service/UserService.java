@@ -5,6 +5,10 @@
  */
 package com.orange.core.service;
 
+import com.orange.core.domain.User;
+
+import java.util.List;
+
 /**
  * @author wangmn
  * @version 1.0
@@ -13,4 +17,6 @@ package com.orange.core.service;
  */
 public interface UserService {
     void delete(long id);
+
+    List<User> findAll();
 }
