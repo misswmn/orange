@@ -6,11 +6,9 @@
 package com.orange.core.util.section;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * @author wangmn
@@ -18,7 +16,7 @@ import java.util.stream.Collectors;
  * @date 2017/4/20
  * @description 区间字典转换
  */
-public class Section {
+public class Interval {
     /**
      * 匹配区间字符串
      */
@@ -50,7 +48,7 @@ public class Section {
      */
     private Map<String, String> constantMap;
 
-    public Section(String string, String message) {
+    public Interval(String string, String message) {
         string = string.replaceAll(" ", "");
         Matcher matcher = PATTERN.matcher(string);
         if (matcher.find()) {
@@ -115,53 +113,7 @@ public class Section {
         this.constantMap = constantMap;
     }
 
-    /**
-     * 初始化
-     *
-     * @param dictMap 字典项
-     */
-    public static List<Section> init(Map<String, String> dictMap) {
-        return dictMap.entrySet().stream()
-                .map(entry -> new Section(entry.getKey(), entry.getValue()))
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * 初始化
-     *
-     * @param dictMap 字典项
-     * @param value   需转换的值
-     */
-    public static String getValue(Map<String, String> dictMap, String value) {
-        List<Section> sectionList = Section.init(dictMap);
-        {
-            String result = Section.getValue(sectionList, Integer.parseInt(value));
-            if (result != null) return result;
-        }
-        {
-            Section[] sections = sectionList.stream()
-                    .filter(s -> s.constantMap == null)
-                    .toArray(Section[]::new);
-            SectionSupport.qsort(sections, 0, sections.length - 1);
-            return Section.getValue(sections, 0, sections.length - 1, Integer.parseInt(value));
-        }
-    }
-
-    /**
-     * 取特殊值
-     */
-    private static String getValue(List<Section> sectionList, Integer value) {
-        return sectionList.stream()
-                .filter(s -> s.constantMap != null)
-                .filter(s -> s.constantMap.containsKey(value + ""))
-                .map(s -> s.constantMap.get(value + ""))
-                .findFirst().orElse(null);
-    }
-
-    /**
-     * 区间判断
-     */
-    private boolean getValue(Integer value, boolean onlyLeft) {
+    public boolean getValue(Integer value, boolean onlyLeft) {
         boolean left = false, right = false;
         switch (this.leftToken) {
             case "[":
@@ -183,38 +135,5 @@ public class Section {
                 break;
         }
         return left && right;
-    }
-
-    private static String getValue(Section[] sections, int min, int max, Integer value) {
-        while (min <= max) {
-            int middle = (min + max) / 2;
-            if (sections[middle].getValue(value, true)) {
-                min = middle + 1;
-            } else {
-                max = middle - 1;
-            }
-        }
-
-        if (sections[max].getValue(value, false)) {
-            return sections[max].getMessage();
-        } else {
-            return null;
-        }
-    }
-
-    public static void main(String[] args) {
-        Map<String, String> dictMap = new HashMap<>();
-        {
-            dictMap.put("(+,99]", "很低");
-            dictMap.put("[100,199]", "低");
-            dictMap.put("[200,299]", "中");
-            dictMap.put("[300,399]", "中高");
-            dictMap.put("[400,499]", "高");
-            dictMap.put("[500,599)", "很高");
-            dictMap.put("9990", "特殊值(极有可能)");
-            dictMap.put("9991", "特殊值(没有可能)");
-        }
-        String result = Section.getValue(dictMap, "9990");
-        System.out.println(result);
     }
 }

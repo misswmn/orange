@@ -11,11 +11,11 @@ package com.orange.core.util.section;
  * @date 2017/4/21
  * @description
  */
-public class SectionSupport {
-    public static void qsort(Section[] sections, int low, int high) {
+public class IntervalSupport {
+    public static void qsort(Interval[] sections, int low, int high) {
         int i = low;
         int j = high;
-        Section temp = sections[low];
+        Interval temp = sections[low];
         while (i < j) {
             while (i < j && Integer.parseInt(temp.getMinValue()) < Integer.parseInt(sections[j].getMinValue()))
                 j--;
