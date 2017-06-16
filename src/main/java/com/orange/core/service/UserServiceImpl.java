@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public void delete(long id) {
-        userMapper.deleteByPrimaryKey(id);
+    public void delete(String id) {
+        userMapper.deleteByPrimaryKey(Long.parseLong(id));
     }
 
     @Override

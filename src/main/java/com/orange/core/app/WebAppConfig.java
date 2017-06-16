@@ -17,7 +17,9 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 @Configuration
 @PropertySources(
-        @PropertySource(value = {"classpath:orange.properties"})
+        @PropertySource(value = {
+                "classpath:orange.properties",
+                "classpath:messages.properties"})
 )
 @ComponentScan(basePackages = "com.orange.core")
 public class WebAppConfig {

@@ -18,5 +18,6 @@ import java.util.List;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Long id);
+
     List<User> findAll();
 }

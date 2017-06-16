@@ -6,6 +6,8 @@
 package com.orange.core.service;
 
 import com.orange.core.domain.User;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -15,8 +17,10 @@ import java.util.List;
  * @date 2017/2/7
  * @description
  */
+@Validated
 public interface UserService {
-    void delete(long id);
+
+    void delete(@NotEmpty(message = "{user.service.delete.id}") String id);
 
     List<User> findAll();
 }

@@ -1,12 +1,18 @@
 package com.orange.core.app;
 
 import freemarker.template.utility.XmlEscape;
+import org.hibernate.validator.HibernateValidator;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -118,5 +124,35 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public XmlEscape xmlEscape() {
         return new XmlEscape();
+    }
+
+    @Bean
+    public LocalValidatorFactoryBean validatorFactoryBean() {
+        LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
+        factoryBean.setProviderClass(HibernateValidator.class);
+        factoryBean.setValidationMessageSource(messageSource());
+        return factoryBean;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasenames("classpath:messages", "classpath:org/hibernate/validator/ValidationMessages");
+        messageSource.setUseCodeAsDefaultMessage(false);
+        messageSource.setDefaultEncoding("GBK");
+        messageSource.setCacheSeconds(60);
+        return messageSource;
+    }
+
+    @Bean
+    public FormattingConversionServiceFactoryBean conversionService() {
+        return new FormattingConversionServiceFactoryBean();
+    }
+
+    @Bean
+    public MethodValidationPostProcessor methodValidationPostProcessor() {
+        MethodValidationPostProcessor processor = new MethodValidationPostProcessor();
+        processor.setValidator(validatorFactoryBean());
+        return processor;
     }
 }

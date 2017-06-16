@@ -37,7 +37,7 @@ dependencies {
             'org.slf4j:jcl-over-slf4j:1.7.19',
             'ch.qos.logback:logback-core:1.1.6',
             'ch.qos.logback:logback-classic:1.1.6',
-            'log4j:log4j:1.2.6',
+            'log4j:log4j:1.2.16',
             /* db */
             'com.alibaba:druid:1.0.27',
             'org.mybatis:mybatis:3.3.0',
@@ -58,7 +58,10 @@ dependencies {
             'org.apache.shiro:shiro-web:1.3.2',
             'org.apache.shiro:shiro-spring:1.3.2',
             'org.apache.shiro:shiro-ehcache:1.3.2',
-
+            'javax.validation:validation-api:1.0.0.GA',
+            'javax.el:javax.el-api:3.0.0',
+            'org.hibernate:hibernate-validator:5.2.0.Final',
+            'javax.el:javax.el-api:2.2.5',
             /*fastxml*/
             'com.fasterxml.jackson.core:jackson-core:2.6.7',
             'com.fasterxml.jackson.core:jackson-databind:2.6.7',
@@ -94,7 +97,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-def environment = hasProperty('env') ? env : 'test'
+def environment = hasProperty('env') ? env : 'local'
 project.ext.set("env", environment)
 
 processResources {
