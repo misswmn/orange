@@ -126,7 +126,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return new XmlEscape();
     }
 
-    @Bean
+   /* @Bean
     public LocalValidatorFactoryBean validatorFactoryBean() {
         LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
         factoryBean.setProviderClass(HibernateValidator.class);
@@ -154,5 +154,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         MethodValidationPostProcessor processor = new MethodValidationPostProcessor();
         processor.setValidator(validatorFactoryBean());
         return processor;
-    }
+    }*/
 }

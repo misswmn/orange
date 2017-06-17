@@ -5,7 +5,6 @@
  */
 package com.orange.core.domain.user;
 
-import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -18,7 +17,6 @@ import java.io.Serializable;
  * @date 2017/6/15
  * @description
  */
-@Data
 public class UserParam implements Serializable {
     private static final long serialVersionUID = -5571594707748295195L;
     /**
@@ -33,4 +31,20 @@ public class UserParam implements Serializable {
      */
     @NotEmpty(message = "{user.password.null}")
     private String password;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
