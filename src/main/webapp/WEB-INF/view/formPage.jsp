@@ -63,7 +63,7 @@
         <div class="message green">${message}</div>
     </c:if>
 
-    <form:form action="/validator/submit" modelAttribute="subscriber">
+    <form:form action="/orange/submit" modelAttribute="subscriber">
         <label for="nameInput">Name: </label>
         <form:input path="name" id="nameInput"/>
         <form:errors path="name" cssClass="error"/>

@@ -23,7 +23,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
         // Create the dispatcher servlet's Spring application context
         AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
         // Register and map the dispatcher servlet
-        ServletRegistration.Dynamic dispatcher = container.addServlet("validator", new DispatcherServlet(dispatcherContext));
+        ServletRegistration.Dynamic dispatcher = container.addServlet("orange", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
         container.addFilter("encodingFilter", new CharacterEncodingFilter("UTF-8", true)).addMappingForUrlPatterns(null, true, "/*");
