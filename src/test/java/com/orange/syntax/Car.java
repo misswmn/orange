@@ -1,0 +1,71 @@
+/*
+ * Copyright (C) 2016 YuWei. All rights reserved.
+ * You can get our information at http://www.zhixindu.com
+ * Anyone can't use this file without our permission.
+ */
+package com.orange.syntax;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+/**
+ * @author wangmn
+ * @version 1.0
+ * @date 2017/6/15
+ * @description
+ */
+public class Car {
+    @NotNull(message = "制造商不能为空")
+    private String manufacturer;
+
+    @NotNull(message = "大小不能为空")
+    @Size(min = 2, max = 14, message = "长度应该介于2和14之间")
+    private String licensePlate;
+
+    @Min(value = 2, message = "座位数最少为2个")
+    private int seatCount;
+
+    public Car(String manufacturer, String licencePlate, int seatCount) {
+        this.manufacturer = manufacturer;
+        this.licensePlate = licencePlate;
+        this.seatCount = seatCount;
+    }
+
+    @NotNull
+    @Valid
+    private Person driver;
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
+    public int getSeatCount() {
+        return seatCount;
+    }
+
+    public void setSeatCount(int seatCount) {
+        this.seatCount = seatCount;
+    }
+
+    public Person getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Person driver) {
+        this.driver = driver;
+    }
+}

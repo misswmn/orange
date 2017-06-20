@@ -1,6 +1,7 @@
+
 package com.orange.service;
 
-import com.orange.core.app.WebAppConfig;
+import com.orange.core.config.WebAppConfig;
 import com.orange.core.domain.User;
 import com.orange.core.service.UserService;
 import com.orange.core.util.JsonUtils;
@@ -23,6 +24,8 @@ import java.util.stream.Collectors;
  * @date 2017/2/7
  * @description
  */
+
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {WebAppConfig.class})
 @WebAppConfiguration
@@ -33,7 +36,7 @@ public class UserServiceTest {
     @Test
     public void testDeleteById() {
         try {
-            userService.delete(null);
+            userService.delete("4");
         } catch (ConstraintViolationException e) {
             Set<ConstraintViolation<?>> errorSet = e.getConstraintViolations();
             List<String> list = errorSet.stream().map(ex -> ex.getMessage()).collect(Collectors.toList());
@@ -47,3 +50,5 @@ public class UserServiceTest {
         System.out.println(JsonUtils.objectToJson(userList));
     }
 }
+
+
