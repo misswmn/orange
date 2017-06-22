@@ -22,6 +22,7 @@ public class ClientDTO {
 
     @NotEmpty(message = "clientDTO.grantTypes 是空的")
     private Collection<String> grantTypes;
+    @NotEmpty(message = "redirect uris is empty")
     private Collection<String> redirectUris;
 
     public boolean hasRedirectUris() {
