@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
@@ -16,10 +17,9 @@ import redis.clients.jedis.JedisPoolConfig;
  * Created by misswmn on 2016/12/27.
  */
 @Configuration
+@EnableAspectJAutoProxy
 @PropertySources(
-        @PropertySource(value = {
-                "classpath:orange.properties",
-                "classpath:messages.properties"})
+        @PropertySource(value = {"classpath:orange.properties"})
 )
 @ComponentScan(basePackages = "com.orange.core")
 public class WebAppConfig {

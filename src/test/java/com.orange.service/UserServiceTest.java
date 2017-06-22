@@ -12,11 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author wangmn
@@ -35,13 +31,7 @@ public class UserServiceTest {
 
     @Test
     public void testDeleteById() {
-        try {
-            userService.delete("4");
-        } catch (ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> errorSet = e.getConstraintViolations();
-            List<String> list = errorSet.stream().map(ex -> ex.getMessage()).collect(Collectors.toList());
-            System.out.println(JsonUtils.objectToJson(list));
-        }
+        userService.delete("");
     }
 
     @Test

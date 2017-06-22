@@ -7,79 +7,82 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.text.MessageFormat;
 
 public class Subscriber {
 
-	@Size(min=2, max=30) 
-	private String name;
-	
-	@NotEmpty @Email
-	private String email;
-	
-	@NotNull @Min(13) @Max(110)
-	private Integer age;
-	
+    @Size(min = 2, max = 30)
+    private String name;
+
+    @NotEmpty
+    @Email
+    private String email;
+
+    @NotNull
+    @Min(13)
+    @Max(110)
+    private Integer age;
+
 //	@Size(min=10) @Phone
 //	private String phone;
-	
-	@NotNull
-	private Gender gender;
-	
+
+    @NotNull(message = "{gender.not.empty}")
+    private Gender gender;
+
 //	@DateTimeFormat(pattern="MM/dd/yyyy")
 //	@NotNull @Past @Year(1989)
 //	private Date birthday;
-	
-	private Boolean receiveNewsletter;
-	
-	public enum Gender {
-		MALE, FEMALE
-	}
 
-	public String getName() {
-		return name;
-	}
+    private Boolean receiveNewsletter;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public enum Gender {
+        MALE, FEMALE
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Integer getAge() {
-		return age;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public Gender getGender() {
-		return gender;
-	}
+    public Integer getAge() {
+        return age;
+    }
 
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
-	public Boolean getReceiveNewsletter() {
-		return receiveNewsletter;
-	}
+    public Gender getGender() {
+        return gender;
+    }
 
-	public void setReceiveNewsletter(Boolean receiveNewsletter) {
-		this.receiveNewsletter = receiveNewsletter;
-	}
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 
-	@Override
-	public String toString() {
-		return "Subscriber [name=" + name + ", email=" + email + ", age=" + age
-				+ ", phone=" + "" + ", gender=" + gender + ", birthday="
-				+ "" + ", receiveNewsletter=" + receiveNewsletter + "]";
-	}
-	
+    public Boolean getReceiveNewsletter() {
+        return receiveNewsletter;
+    }
+
+    public void setReceiveNewsletter(Boolean receiveNewsletter) {
+        this.receiveNewsletter = receiveNewsletter;
+    }
+
+    @Override
+    public String toString() {
+        return "Subscriber [name=" + name + ", email=" + email + ", age=" + age
+                + ", phone=" + "" + ", gender=" + gender + ", birthday="
+                + "" + ", receiveNewsletter=" + receiveNewsletter + "]";
+    }
 }
