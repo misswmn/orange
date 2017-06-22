@@ -7,6 +7,7 @@ package com.orange.core.service;
 
 import com.orange.core.dao.UserMapper;
 import com.orange.core.domain.User;
+import com.orange.core.spring.bean.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,8 @@ public class UserServiceImpl implements UserService {
         return userMapper.findAll();
     }
 
+    @Override
+    public void saveOne(ClientDTO clientDTO) {
 
+    }
 }

@@ -6,9 +6,11 @@
 package com.orange.core.service;
 
 import com.orange.core.domain.User;
+import com.orange.core.spring.bean.ClientDTO;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -23,4 +25,6 @@ public interface UserService {
     void delete(@NotEmpty(message = "{user.service.delete.id}") String id);
 
     List<User> findAll();
+
+    void saveOne(@Valid ClientDTO clientDTO);
 }
