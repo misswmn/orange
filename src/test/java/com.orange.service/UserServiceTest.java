@@ -5,6 +5,7 @@ import com.orange.core.config.WebAppConfig;
 import com.orange.core.domain.User;
 import com.orange.core.service.UserService;
 import com.orange.core.spring.bean.ClientDTO;
+import com.orange.core.spring.bean.Simple;
 import com.orange.core.util.JsonUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,8 +47,14 @@ public class UserServiceTest {
     public void testSave() {
         ClientDTO dto = new ClientDTO();
         dto.setGrantTypes(Arrays.asList(new String[]{"age", "name", "email", "auth_code"}));
-        dto.setRedirectUris(new ArrayList<>());
+//        dto.setRedirectUris(new ArrayList<>());
         userService.saveOne(dto);
+    }
+
+    @Test
+    public void testSaveOne() {
+        Simple simple = new Simple();
+        userService.saveOne(simple);
     }
 }
 

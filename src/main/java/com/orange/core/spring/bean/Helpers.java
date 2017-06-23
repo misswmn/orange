@@ -20,4 +20,8 @@ public final class Helpers {
     public static boolean isOdd(int value) {
         return value % 2 != 0;
     }
+
+    public static boolean validChannel(Integer value) {
+        return value.intValue() > 1 && value.intValue() < 7;
+    }
 }

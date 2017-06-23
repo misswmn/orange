@@ -7,6 +7,7 @@ package com.orange.core.service;
 
 import com.orange.core.domain.User;
 import com.orange.core.spring.bean.ClientDTO;
+import com.orange.core.spring.bean.Simple;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
 
@@ -27,4 +28,6 @@ public interface UserService {
     List<User> findAll();
 
     void saveOne(@Valid ClientDTO clientDTO);
+
+    void saveOne(@Valid Simple simple);
 }

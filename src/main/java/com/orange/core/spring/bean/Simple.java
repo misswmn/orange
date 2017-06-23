@@ -15,7 +15,6 @@ import com.orange.core.spring.SpELAssert;
  */
 public class Simple {
 
-    @SpELAssert(value = "#isEven(#this) && #this > 42",
-            helpers = Helpers.class)
+    @SpELAssert(value = "#validChannel(#this)", helpers = Helpers.class, message = "{simple.count.even}")
     private int count;
 }
