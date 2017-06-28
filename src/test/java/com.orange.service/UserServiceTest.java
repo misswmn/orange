@@ -3,9 +3,13 @@ package com.orange.service;
 
 import com.orange.core.config.WebAppConfig;
 import com.orange.core.domain.User;
+import com.orange.core.service.RoleService;
 import com.orange.core.service.UserService;
 import com.orange.core.spring.bean.ClientDTO;
+import com.orange.core.spring.bean.Role;
+import com.orange.core.spring.bean.Sample;
 import com.orange.core.spring.bean.Simple;
+import com.orange.core.spring.bean.UserPassword;
 import com.orange.core.util.JsonUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +35,8 @@ import java.util.List;
 public class UserServiceTest {
     @Inject
     private UserService userService;
+    @Inject
+    private RoleService roleService;
 
     @Test
     public void testDeleteById() {
@@ -47,14 +53,38 @@ public class UserServiceTest {
     public void testSave() {
         ClientDTO dto = new ClientDTO();
         dto.setGrantTypes(Arrays.asList(new String[]{"age", "name", "email", "auth_code"}));
-//        dto.setRedirectUris(new ArrayList<>());
+        dto.setRedirectUris(Arrays.asList("123", "124"));
         userService.saveOne(dto);
+    }
+
+    @Test
+    public void testChangePwd() {
+        UserPassword user = new UserPassword();
+        user.setNewPassword("123");
+        user.setConfirmPassword("123");
+        userService.changePwd(user);
     }
 
     @Test
     public void testSaveOne() {
         Simple simple = new Simple();
         userService.saveOne(simple);
+    }
+
+    @Test
+    public void testSaveRole() {
+        Role role = new Role();
+        role.setName("管理员");
+        role.setId(50);
+        roleService.saveOne(role);
+    }
+
+    @Test
+    public void testSaveSample() {
+        Sample sample = new Sample();
+        sample.setCount(8);
+        sample.setEnabled(true);
+        userService.save(sample);
     }
 }
 

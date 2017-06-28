@@ -11,7 +11,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -44,15 +44,14 @@ public class WebConfig {
 
     @Bean
     public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setUseCodeAsDefaultMessage(true);
-        messageSource.setBasenames("messages");
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasenames("classpath:messages");
         messageSource.setDefaultEncoding("GBK");
         return messageSource;
     }
 
     @Bean
-    public LocalValidatorFactoryBean validatorFactoryBean() {
+    public LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
         factoryBean.setProviderClass(HibernateValidator.class);
         factoryBean.setValidationMessageSource(messageSource());
@@ -62,7 +61,7 @@ public class WebConfig {
     @Bean
     public MethodValidationPostProcessor methodValidationPostProcessor() {
         MethodValidationPostProcessor processor = new MethodValidationPostProcessor();
-        processor.setValidator(validatorFactoryBean());
+        processor.setValidator(validator());
         return processor;
     }
 

@@ -16,13 +16,13 @@ import java.util.Collection;
  * @date 2017/6/22
  * @description
  */
-@SpELAssert(value = "hasRedirectUris()", applyIf = "grantTypes.contains('auth_code')",
-        message = "{validator.missing_redirect_uri}")
+@SpELAssert(value = "false", applyIf = "grantTypes.contains('auth_code')",
+        message = "这是什么gui")
 public class ClientDTO {
 
-    @NotEmpty(message = "clientDTO.grantTypes 是空的")
+    @NotEmpty(message = "grantTypes 为空")
     private Collection<String> grantTypes;
-    @NotEmpty(message = "redirect uris is empty")
+    @NotEmpty(message = "redirect uris 为空")
     private Collection<String> redirectUris;
 
     public boolean hasRedirectUris() {

@@ -23,17 +23,17 @@ public class UserParam {
     /**
      * 用户名
      */
-    @NotEmpty(message = "{user.password.null}")
+    @NotEmpty(message = "用户名不能为空")
     @Length(min = 5, max = 20)
-    @Pattern(regexp = "^[a-zA-Z]{5,20}$", message = "{user.name.illegal}")
+    @Pattern(regexp = "^[a-zA-Z]{5,20}$", message = "用户名格式不正确")
     private String username;
     /**
      * 密码
      */
-    @NotNull(message = "{user.password.null}")
+    @NotNull(message = "密码不能为空")
     private String password;
 
-    @NotEmpty
+    @NotEmpty(message = "{common.param.illegal}")
     private List<String> roles;
 
     public String getUsername() {

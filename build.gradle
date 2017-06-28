@@ -29,7 +29,7 @@ dependencies {
             'org.springframework:spring-oxm:4.2.9.RELEASE',
             'org.springframework:spring-test:4.2.9.RELEASE',
             'org.springframework.data:spring-data-commons:1.12.1.RELEASE',
-
+            'org.springframework.data:spring-data-mongodb:1.10.4.RELEASE',
             /* log*/
             'org.slf4j:slf4j-api:1.7.19',
             'org.slf4j:jcl-over-slf4j:1.7.19',
@@ -96,12 +96,13 @@ dependencies {
             'com.google.code.gson:gson:2.3.1',
             'org.mongodb:mongo-java-driver:3.2.2',
             'org.mongodb.morphia:morphia:1.1.1'
+    compile 'com.sun.el:el-ri:1.0'
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     compile 'javax.validation:validation-api:1.1.0.Final'
-    compile 'org.hibernate:hibernate-validator:5.0.1.Final'
+    compile 'org.hibernate:hibernate-validator:5.4.1.Final'
     compile 'org.slf4j:slf4j-api:1.7.5'
     compile 'javax.el:el-api:2.2'
-    compile 'javax.el:javax.el-api:2.2.4'
+//    compile 'javax.el:javax.el-api:2.2.4'
     compile 'javax.el:javax.el-api:3.0.0'
     runtime 'javax.servlet:jstl:1.2'
 }
