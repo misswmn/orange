@@ -26,8 +26,9 @@ public class DefaultPageRepository implements PageRepository {
         result.setTotal(condition.getTotal());
         result.setPage(page);
         result.setPageSize(pageSize);
-        List<M> rows = condition.execute(result.getSkip(), pageSize);
+        List<M> rows = condition.execute(result.getSkip(), result.getPageSize());
         result.setRows(rows == null ? new ArrayList<>() : rows);
+        result.setTotalPages(result.getTotalPages());
         return result;
     }
 }

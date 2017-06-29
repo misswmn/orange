@@ -5,7 +5,6 @@
  */
 package com.orange.core.page;
 
-
 /**
  * @author wangmn
  * @version 1.0

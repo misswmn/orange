@@ -93,6 +93,10 @@ public class Condition<T> {
         return (int) query.countAll();
     }
 
+    public List<T> execute() {
+        return query.retrievedFields(false, "_id").asList();
+    }
+
     public List<T> execute(int skip, int pageSize) {
         query.retrievedFields(false, "_id").offset(skip).limit(pageSize);
         return query.asList();

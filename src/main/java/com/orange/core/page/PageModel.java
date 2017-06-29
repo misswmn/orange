@@ -41,8 +41,14 @@ public class PageModel<T> implements Serializable {
      *
      * @return
      */
+    private int totalPages;
+
     public int getTotalPages() {
         return (total + pageSize - 1) / pageSize;
+    }
+
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
     }
 
     public List<T> getRows() {
@@ -84,5 +90,13 @@ public class PageModel<T> implements Serializable {
 
     public void setPage(int page) {
         this.page = page < 1 ? 1 : page;
+    }
+
+    public void copy(PageModel src, PageModel result) {
+        result.setTotalPages(src.getTotalPages());
+        result.setTotal(src.getTotal());
+        result.setPage(src.getPage());
+        result.setPageSize(src.getPageSize());
+        result.setSkip(src.getSkip());
     }
 }
