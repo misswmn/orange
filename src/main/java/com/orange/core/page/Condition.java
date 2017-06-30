@@ -19,72 +19,68 @@ import java.util.List;
  */
 public class Condition<T> {
 
-    private Datastore datastore;
     private Query<T> query;
-    private Class clazz;
 
-    public Condition(Datastore ds, Class<T> t) {
-        this.clazz = t;
-        this.datastore = ds;
-        query = this.datastore.createQuery(this.clazz);
+    public Condition(Datastore datastore, Class<T> t) {
+        query = datastore.createQuery(t);
     }
 
-    public Condition equal(String field, String value) {
+    public Condition<T> equal(String field, String value) {
         if (!StringUtils.isEmpty(value)) query.field(field).equal(value);
         return this;
     }
 
-    public Condition notEqual(String field, String value) {
+    public Condition<T> notEqual(String field, String value) {
         if (!StringUtils.isEmpty(value)) query.field(field).notEqual(value);
         return this;
     }
 
-    public Condition in(String field, Iterable<?> values) {
-        query.field(field).in(values);
+    public Condition<T> in(String field, Iterable<?> values) {
+        if (values != null) query.field(field).in(values);
         return this;
     }
 
-    public Condition notIn(String field, Iterable<?> values) {
-        query.field(field).notIn(values);
+    public Condition<T> notIn(String field, Iterable<?> values) {
+        if (values != null) query.field(field).notIn(values);
         return this;
     }
 
-    public Condition between(String field, Object left, Object right) {
+    public Condition<T> between(String field, Object left, Object right) {
         query.field(field).greaterThanOrEq(left).field(field).lessThanOrEq(right);
         return this;
     }
 
-    public Condition lessThan(String field, Object value) {
-        query.field(field).lessThan(value);
+    public Condition<T> lessThan(String field, Object value) {
+        if (!StringUtils.isEmpty(value)) query.field(field).lessThan(value);
         return this;
     }
 
-    public Condition lessThanOrEq(String field, Object value) {
-        query.field(field).lessThanOrEq(value);
+    public Condition<T> lessThanOrEq(String field, Object value) {
+        if (!StringUtils.isEmpty(value)) query.field(field).lessThanOrEq(value);
         return this;
     }
 
-    public Condition greaterThan(String field, Object value) {
-        query.field(field).greaterThan(value);
+    public Condition<T> greaterThan(String field, Object value) {
+        if (!StringUtils.isEmpty(value)) query.field(field).greaterThan(value);
         return this;
     }
 
-    public Condition greaterThanOrEq(String field, Object value) {
-        query.field(field).greaterThanOrEq(value);
+    public Condition<T> greaterThanOrEq(String field, Object value) {
+        if (!StringUtils.isEmpty(value)) query.field(field).greaterThanOrEq(value);
         return this;
     }
 
-    public Condition like(String field, String value) {
+    public Condition<T> like(String field, String value) {
         if (!StringUtils.isEmpty(value)) query.field(field).contains(value);
         return this;
     }
 
-    public Condition startsWith(String field, String prefix) {
-        query.field(field).startsWith(prefix);
+    public Condition<T> startsWith(String field, String prefix) {
+        if (!StringUtils.isEmpty(prefix)) query.field(field).startsWith(prefix);
         return this;
     }
 
-    public Condition sort(Direction sort, String field) {
+    public Condition<T> sort(Direction sort, String field) {
         query.order(Direction.ASC.equals(sort) ? "+" + field : "-" + field);
         return this;
     }
