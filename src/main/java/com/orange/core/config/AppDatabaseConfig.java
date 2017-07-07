@@ -7,6 +7,7 @@ package com.orange.core.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -90,5 +91,11 @@ public class AppDatabaseConfig {
         return sessionFactory;
     }
 
-
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer() {
+        MapperScannerConfigurer configurer = new MapperScannerConfigurer();
+        configurer.setBasePackage("com.orange.core.dao");
+        configurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
+        return configurer;
+    }
 }

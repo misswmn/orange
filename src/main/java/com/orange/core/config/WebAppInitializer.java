@@ -18,10 +18,11 @@ public class WebAppInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext container) throws ServletException {
         // Create the 'root' Spring application context
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(WebAppConfig.class, AppDatabaseConfig.class, AppDataConfig.class, WebConfig.class);
+        rootContext.register(WebAppConfig.class);
         container.addListener(new ContextLoaderListener(rootContext));
         // Create the dispatcher servlet's Spring application context
         AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
+        dispatcherContext.register(WebConfig.class);
         // Register and map the dispatcher servlet
         ServletRegistration.Dynamic dispatcher = container.addServlet("orange", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);

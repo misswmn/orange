@@ -7,9 +7,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -21,7 +26,9 @@ import redis.clients.jedis.JedisPoolConfig;
 @PropertySources(
         @PropertySource(value = {"classpath:orange.properties"})
 )
-@ComponentScan(basePackages = "com.orange.core")
+@ComponentScan(basePackages = "com.orange.core", lazyInit = true, excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION,
+        value = {Controller.class, ControllerAdvice.class, RestController.class})})
+@Import({AppDatabaseConfig.class})
 public class WebAppConfig {
 
     @Value("${redis.host}")
