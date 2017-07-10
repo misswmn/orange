@@ -25,7 +25,7 @@ public class Condition<T> {
         query = datastore.createQuery(t);
     }
 
-    public Condition<T> equal(String field, String value) {
+    public Condition<T> equal(String field, Object value) {
         if (!StringUtils.isEmpty(value)) query.field(field).equal(value);
         return this;
     }
@@ -80,7 +80,7 @@ public class Condition<T> {
         return this;
     }
 
-    public Condition<T> sort(Direction sort, String field) {
+    public Condition<T> sort(String field, Direction sort) {
         query.order(Direction.ASC.equals(sort) ? "+" + field : "-" + field);
         return this;
     }
