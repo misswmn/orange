@@ -32,7 +32,7 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.orange.core.controller")
-public class WebConfig {
+public class WebmvcConfig {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {

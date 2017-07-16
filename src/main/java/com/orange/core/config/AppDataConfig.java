@@ -23,7 +23,7 @@ import java.sql.SQLException;
  * @description
  */
 @Configuration
-public class AppDatabaseConfig {
+public class AppDataConfig {
     @Value("${jdbc.url}")
     private String jdbcurl;
     @Value("${jdbc.username}")
