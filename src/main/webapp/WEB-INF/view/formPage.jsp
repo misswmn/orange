@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Sample Form</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../../javascript/jquery.js"></script>
     <style>
         body {
             background-color: #eee;
