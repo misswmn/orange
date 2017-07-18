@@ -25,7 +25,7 @@ public class Subscriber {
 //	@Size(min=10) @Phone
 //	private String phone;
 
-    @NotNull(message = "姓别想为空。。。。。")
+    @NotNull(message = "{common.param.illegal}")
     private Gender gender;
 
 //	@DateTimeFormat(pattern="MM/dd/yyyy")

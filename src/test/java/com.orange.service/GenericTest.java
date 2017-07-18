@@ -6,6 +6,8 @@
 package com.orange.service;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author wangmn
@@ -14,6 +16,7 @@ import org.junit.Test;
  * @description
  */
 public class GenericTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GenericTest.class);
     public static void main(String[] args) {
         Box<String> name = new Box<>("corn");
         Box<Integer> age = new Box<>(712);
@@ -50,5 +53,10 @@ public class GenericTest {
     public void test() {
         boolean f = true && false || false;
         System.out.println(f);
+    }
+
+    @Test
+    public void test2(){
+        LOGGER.info("{},{},{}", "xxxx", "aaaa","精品房但是");
     }
 }

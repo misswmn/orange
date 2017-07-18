@@ -45,8 +45,8 @@ public class WebmvcConfig {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:messages");
-        messageSource.setDefaultEncoding("GBK");
+        messageSource.setBasenames("classpath:ValidationMessages");
+        messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
 

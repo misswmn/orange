@@ -15,13 +15,13 @@ import javax.validation.constraints.NotNull;
  * @date 2017/6/22
  * @description
  */
-@SpELAssert(value = "newPassword.equals(confirmPassword)",
+@SpELAssert(value = "newPassword != null && newPassword.equals(confirmPassword)",
         message = "{validator.passwords_not_same}")
 public class UserPassword {
 
-    @NotNull(message = "新密码不能为空")
+    @NotNull(message = "新密码不能为空1")
     private String newPassword;
-    @NotNull(message = "新密码不一致")
+    @NotNull(message = "新密码不能为空2")
     private String confirmPassword;
 
     public String getNewPassword() {

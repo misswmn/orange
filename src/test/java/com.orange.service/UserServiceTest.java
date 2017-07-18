@@ -60,8 +60,8 @@ public class UserServiceTest {
     @Test
     public void testChangePwd() {
         UserPassword user = new UserPassword();
-        user.setNewPassword("123");
-        user.setConfirmPassword("123");
+        user.setNewPassword("1");
+        user.setConfirmPassword(null);
         userService.changePwd(user);
     }
 

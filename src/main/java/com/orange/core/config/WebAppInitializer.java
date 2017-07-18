@@ -1,32 +1,42 @@
 package com.orange.core.config;
 
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.Filter;
 
 /**
  * Created by misswmn on 2016/12/27.
  */
-public class WebAppInitializer implements WebApplicationInitializer {
+@Order(1)
+public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
 
-    public void onStartup(ServletContext container) throws ServletException {
-        // Create the 'root' Spring application context
-        AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(WebAppConfig.class);
-        container.addListener(new ContextLoaderListener(rootContext));
-        // Create the dispatcher servlet's Spring application context
-        AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
-        dispatcherContext.register(WebmvcConfig.class);
-        // Register and map the dispatcher servlet
-        ServletRegistration.Dynamic dispatcher = container.addServlet("orange", new DispatcherServlet(dispatcherContext));
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
-        container.addFilter("encodingFilter", new CharacterEncodingFilter("UTF-8", true)).addMappingForUrlPatterns(null, true, "/*");
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class<?>[]{WebAppConfig.class};
+    }
+
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class<?>[]{WebmvcConfig.class};
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[]{encodingFilter()};
+    }
+
+    @Override
+    protected String getServletName() {
+        return "orange";
+    }
+
+    private CharacterEncodingFilter encodingFilter() {
+        return new CharacterEncodingFilter("UTF-8", true);
     }
 }
