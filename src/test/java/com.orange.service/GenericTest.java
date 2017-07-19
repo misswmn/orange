@@ -57,6 +57,6 @@ public class GenericTest {
 
     @Test
     public void test2(){
-        LOGGER.info("{},{},{}", "xxxx", "aaaa","精品房但是");
+        LOGGER.info("{},{}", "xxxx", "aaaa",new RuntimeException());
     }
 }

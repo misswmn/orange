@@ -12,7 +12,7 @@ import javax.validation.Valid;
 @Controller
 public class FormController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/xx", method = RequestMethod.GET)
     public String loadFormPage(Model m) {
         m.addAttribute("subscriber", new Subscriber());
         return "formPage";

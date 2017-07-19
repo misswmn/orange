@@ -18,7 +18,7 @@ import java.util.List;
 @RestController(value = "/u")
 public class UserLoginController {
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
         return new ModelAndView("user/login");
     }
