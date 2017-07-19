@@ -5,14 +5,19 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <link rel="stylesheet" href="system/css/reset.css" type="text/css">
     <link rel="stylesheet" href="system/css/supersized.css" type="text/css">
-    <link rel="stylesheet" href="system/css/style.css" type="text/css">
+<#--<link rel="stylesheet" href="system/css/style.css" type="text/css">-->
+    <link rel="stylesheet" href="system/bootstrap/css/bootstrap.css" type="text/css">
 </head>
 <body id="body">
-<div class="page-container">
+<div class="container-fluid">
     <h1>Login</h1>
     <form id="_form" action="" method="post">
-        <input type="text" name="account" class="username" placeholder="用户名">
-        <input type="password" name="password" class="password" placeholder="密码">
+        <div class="row">
+            <div class="col-md-12"><input type="text" name="account" class="username" placeholder="用户名"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><input type="password" name="password" class="password" placeholder="密码"></div>
+        </div>
         <div style="text-align: left; margin-left: 10px;">
             <label>
                 <input type="checkbox" checked="checked" id="rememberMe" style="width: 10px; height: 10px;">记住我
