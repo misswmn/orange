@@ -2,11 +2,12 @@ package com.orange.core.controller;
 
 import com.orange.core.domain.user.UserParam;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 /**
  * Created by misswmn on 2017/4/8.
@@ -20,7 +21,7 @@ public class UserLoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@Validated UserParam user, BindingResult result) {
+    public String login(@Valid UserParam user, BindingResult result) {
         return "success";
     }
 }

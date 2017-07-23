@@ -8,16 +8,21 @@ package com.orange.core.aop;
 import com.orange.core.util.JsonUtils;
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,8 +33,8 @@ import java.util.stream.Collectors;
  * @date 2017/6/22
  * @description
  */
-@Component
 @Aspect
+@Component
 public class LogAspect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LogAspect.class);
@@ -38,19 +43,29 @@ public class LogAspect {
     private void monitor() {
     }
 
-//    @Pointcut("@args(org.springframework.validation.annotation.Validated)")
-//    private void controllerMonitor() {
-//    }
+    @Pointcut("execution(* com.orange.core.controller.*.*(..))")
+    private void controllerMonitor() {
+    }
 
     @AfterThrowing(pointcut = "monitor()", throwing = "ex")
     private void beforeService(JoinPoint joinPoint, Exception ex) {
         print(joinPoint, ex);
     }
 
-//    @AfterThrowing(pointcut = "controllerMonitor()")
-//    private void afterValid(JoinPoint joinPoint) {
-//        System.out.println("after valid##################");
-//    }
+    @Around("controllerMonitor() && args(..,result)")
+    public Object paramValid(ProceedingJoinPoint point, BindingResult result) throws Throwable {
+        List<ObjectError> errors = result.getAllErrors();
+        if (errors.size() > 0) {
+            StringBuilder msg = new StringBuilder();
+            for (ObjectError error : errors) {
+                msg.append(error.getDefaultMessage());
+                msg.append("\n");
+            }
+            return new HashMap<>();
+        }
+        System.out.println("after valid##################");
+        return point.proceed();
+    }
 
     private void print(JoinPoint joinPoint, Exception ex) {
         if (ex instanceof ConstraintViolationException) {
