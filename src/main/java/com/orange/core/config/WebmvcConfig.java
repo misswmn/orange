@@ -20,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.util.HashMap;
@@ -71,9 +72,10 @@ public class WebmvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public FreeMarkerViewResolver freeMarkerViewResolver() {
         FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
-        viewResolver.setViewClass(org.springframework.web.servlet.view.freemarker.FreeMarkerView.class);
+        viewResolver.setViewClass(FreeMarkerView.class);
         viewResolver.setContentType("text/html;charset=utf-8");
         viewResolver.setSuffix(".ftl");
+        viewResolver.setCache(false);
         viewResolver.setOrder(0);
         return viewResolver;
     }
@@ -87,7 +89,7 @@ public class WebmvcConfig extends WebMvcConfigurerAdapter {
         variables.put("xml_escape", xmlEscape());
         configurer.setFreemarkerVariables(variables);
         Properties settings = new Properties();
-        settings.put("template_update_delay", "3600");
+        settings.put("template_update_delay", "0");
         settings.put("locale", "zh_CN");
         settings.put("datetime_format", "yyyy-MM-dd HH:mm:ss");
         settings.put("date_format", "yyyy-MM-dd");
@@ -111,5 +113,4 @@ public class WebmvcConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("system/js/**").addResourceLocations("/system/js/");
         registry.addResourceHandler("system/css/**").addResourceLocations("/system/css/");
     }
-
 }

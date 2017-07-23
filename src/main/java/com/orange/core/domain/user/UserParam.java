@@ -6,12 +6,9 @@
 package com.orange.core.domain.user;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * @author wangmn
@@ -23,7 +20,7 @@ public class UserParam {
     /**
      * 用户名
      */
-    @NotEmpty(message = "用户名不能为空")
+    @NotNull(message = "用户名不能为空")
     @Length(min = 5, max = 20)
     @Pattern(regexp = "^[a-zA-Z]{5,20}$", message = "用户名格式不正确")
     private String username;
@@ -32,9 +29,6 @@ public class UserParam {
      */
     @NotNull(message = "密码不能为空")
     private String password;
-
-    @NotEmpty(message = "{common.param.illegal}")
-    private List<String> roles;
 
     public String getUsername() {
         return username;
@@ -52,16 +46,4 @@ public class UserParam {
         this.password = password;
     }
 
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
-
-    public static void main(String[] args) {
-        ResourceBundle resource = ResourceBundle.getBundle("messages");
-        System.out.print(resource.getString("name.not.empty"));
-    }
 }

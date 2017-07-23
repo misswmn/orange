@@ -38,8 +38,21 @@ public class LogAspect {
     private void monitor() {
     }
 
+//    @Pointcut("@args(org.springframework.validation.annotation.Validated)")
+//    private void controllerMonitor() {
+//    }
+
     @AfterThrowing(pointcut = "monitor()", throwing = "ex")
     private void beforeService(JoinPoint joinPoint, Exception ex) {
+        print(joinPoint, ex);
+    }
+
+//    @AfterThrowing(pointcut = "controllerMonitor()")
+//    private void afterValid(JoinPoint joinPoint) {
+//        System.out.println("after valid##################");
+//    }
+
+    private void print(JoinPoint joinPoint, Exception ex) {
         if (ex instanceof ConstraintViolationException) {
             ConstraintViolationException e = (ConstraintViolationException) ex;
             Set<ConstraintViolation<?>> errorSet = e.getConstraintViolations();
