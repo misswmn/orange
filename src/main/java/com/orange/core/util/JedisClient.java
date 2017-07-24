@@ -1,4 +1,4 @@
-package com.orange.core.client;
+package com.orange.core.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
 package com.orange.core.config;
 
-import com.orange.core.client.JedisClient;
+import com.orange.core.util.JedisClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Controller;

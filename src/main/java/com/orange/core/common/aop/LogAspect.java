@@ -3,26 +3,25 @@
  * You can get our information at http://www.zhixindu.com
  * Anyone can't use this file without our permission.
  */
-package com.orange.core.aop;
+package com.orange.core.common.aop;
 
+import com.orange.core.common.ServiceCode;
+import com.orange.core.common.ServiceException;
 import com.orange.core.util.JsonUtils;
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.text.MessageFormat;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,7 +42,7 @@ public class LogAspect {
     private void monitor() {
     }
 
-    @Pointcut("execution(* com.orange.core.controller.*.*(..))")
+    @Pointcut("execution(* com.orange.core.controller.*.*(..,org.springframework.validation.BindingResult))")
     private void controllerMonitor() {
     }
 
@@ -52,19 +51,22 @@ public class LogAspect {
         print(joinPoint, ex);
     }
 
-    @Around("controllerMonitor() && args(..,result)")
-    public Object paramValid(ProceedingJoinPoint point, BindingResult result) throws Throwable {
-        List<ObjectError> errors = result.getAllErrors();
-        if (errors.size() > 0) {
-            StringBuilder msg = new StringBuilder();
-            for (ObjectError error : errors) {
-                msg.append(error.getDefaultMessage());
-                msg.append("\n");
+    @Before("controllerMonitor()")
+    public void afterValid(JoinPoint point) {
+        String name = point.getSignature().getDeclaringType().getSimpleName();
+        String method = point.getSignature().getName();
+        Object[] args = point.getArgs();
+        BindingResult result;
+        for (Object arg : args) {
+            if (arg instanceof BindingResult) {
+                result = (BindingResult) arg;
+                if (result.hasErrors()) {
+                    List<String> errorMessage = result.getAllErrors().stream().map(oe -> oe.getDefaultMessage()).collect(Collectors.toList());
+                    LOGGER.error(MessageFormat.format("{0}.{1} >>>>> {2}", name, method, errorMessage));
+                    throw new ServiceException(ServiceCode.ILLEGAL_PARAM, StringUtils.join(errorMessage, ","));
+                }
             }
-            return new HashMap<>();
         }
-        System.out.println("after valid##################");
-        return point.proceed();
     }
 
     private void print(JoinPoint joinPoint, Exception ex) {
