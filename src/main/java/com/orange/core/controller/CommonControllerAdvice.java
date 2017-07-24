@@ -76,7 +76,7 @@ public class CommonControllerAdvice {
     @ExceptionHandler(value = ServiceException.class)
     @ResponseBody
     public ResultBean handleException(ServiceException serviceException) {
-        LOGGER.error(MessageFormat.format("ServiceException==>  errorCode:{0} || message:{1}", serviceException.getCode(), serviceException.getMessage()), serviceException);
+        LOGGER.error(MessageFormat.format("ServiceException==>  errorCode:{0} message:{1}", serviceException.getCode(), serviceException.getMessage()), serviceException);
         return ResultBean.format(serviceException);
     }
 

@@ -62,7 +62,7 @@ public class LogAspect {
                 result = (BindingResult) arg;
                 if (result.hasErrors()) {
                     List<String> errorMessage = result.getAllErrors().stream().map(oe -> oe.getDefaultMessage()).collect(Collectors.toList());
-                    LOGGER.error(MessageFormat.format("{0}.{1} >>>>> {2}", name, method, errorMessage));
+                    LOGGER.error(MessageFormat.format("{0}.{1} => {2}", name, method, errorMessage));
                     throw new ServiceException(ServiceCode.ILLEGAL_PARAM, StringUtils.join(errorMessage, ","));
                 }
             }
