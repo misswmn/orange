@@ -23,13 +23,14 @@
                     <div class="form-group">
                         <input type="password" name="password" class="form-control input-lg" placeholder="密码">
                     </div>
-                <#--<div class="checkbox">
-                    <label> <input type="checkbox" checked="checked" id="rememberMe">记住我 </label>
-                </div>-->
-                    <button type="submit" class="btn btn-lg btn-primary btn-block" id="login">登录</button>
+                    <div class="checkbox">
+                        <label> <input type="checkbox" checked="checked" id="rememberMe">记住我 </label>
+                    </div>
+                    <button type="button" class="btn btn-lg btn-primary btn-block" id="login">登录</button>
                     <div>
                         <a href="#">Create account</a> or <a href="#">reset password</a>
                     </div>
+                    <div class="error"><span></span></div>
                 </form>
             </section>
         </div>
@@ -37,5 +38,18 @@
         <div class="col-md-4"></div>
     </div>
 </div>
+<script type="text/javascript" src="system/js/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            var $login = $("#login");
+            if (e && e.keyCode == 13) $login.click();
+            $login.click(function () {
+
+            });
+        }
+    })
+</script>
 </body>
 </html>

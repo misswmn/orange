@@ -5,8 +5,6 @@
  */
 package com.orange.core.domain.user;
 
-import org.hibernate.validator.constraints.Length;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -17,11 +15,15 @@ import javax.validation.constraints.Pattern;
  * @description
  */
 public class UserParam {
+
+    /**
+     * 编号
+     */
+    private Long id;
     /**
      * 用户名
      */
     @NotNull(message = "用户名不能为空")
-    @Length(min = 5, max = 20)
     @Pattern(regexp = "^[a-zA-Z]{5,20}$", message = "用户名格式不正确")
     private String username;
     /**
@@ -29,6 +31,8 @@ public class UserParam {
      */
     @NotNull(message = "密码不能为空")
     private String password;
+
+    private Long status;
 
     public String getUsername() {
         return username;
