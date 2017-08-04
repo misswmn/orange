@@ -23,9 +23,9 @@
                     <div class="form-group">
                         <input type="password" name="password" class="form-control input-lg" placeholder="密码">
                     </div>
-                    <div class="checkbox">
+                    <#--<div class="checkbox">
                         <label> <input type="checkbox" checked="checked" id="rememberMe">记住我 </label>
-                    </div>
+                    </div>-->
                     <button type="button" class="btn btn-lg btn-primary btn-block" id="login">登录</button>
                     <div>
                         <a href="#">Create account</a> or <a href="#">reset password</a>
