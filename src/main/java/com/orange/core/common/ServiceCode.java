@@ -11,7 +11,7 @@ public interface ServiceCode {
     int SUCCESS = 0;
     int WARN = 1;
     int UNKNOWN_EXCEPTION = 2;
-    int SYSTEM_ERROR =3;
+    int SYSTEM_ERROR = 3;
     int CACHE_ERROR = 4;
     int ILLEGAL_TOKEN = 5;
     int ILLEGAL_PARAM = 6;
@@ -26,4 +26,6 @@ public interface ServiceCode {
     int ILLEGAL_REQUEST = 15;
     int INTERFACE_TIMEOUT = 16;
 
+    int ACCOUNT_LOCK = 17;
+    int USERNAME_PWD_ERROR = 18;
 }

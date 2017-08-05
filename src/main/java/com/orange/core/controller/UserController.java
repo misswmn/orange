@@ -2,7 +2,11 @@ package com.orange.core.controller;
 
 import com.alibaba.druid.util.StringUtils;
 import com.orange.core.common.ResultBean;
-import com.orange.core.domain.user.UserParam;
+import com.orange.core.common.ServiceCode;
+import com.orange.core.common.ServiceException;
+import com.orange.core.domain.User;
+import com.orange.core.shiro.token.manager.TokenManager;
+import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
@@ -33,18 +37,30 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResultBean login(@Valid UserParam user, BindingResult result,
+    public ResultBean login(@Valid User user, BindingResult result,
                             Boolean rememberMe, HttpServletRequest request) {
-        SavedRequest savedRequest = WebUtils.getSavedRequest(request);
-        String url = null;
-        if (savedRequest != null) {
-            url = savedRequest.getRequestUrl();
+        try {
+            TokenManager.login(user, rememberMe);
+            SavedRequest savedRequest = WebUtils.getSavedRequest(request);
+            String url = null;
+            if (savedRequest != null) {
+                url = savedRequest.getRequestUrl();
+            }
+            LOGGER.info(getClass() + " 获取登陆之前的URL:[%s], " + url);
+            if (StringUtils.isEmpty(url)) {
+                url = "/user/index";
+            }
+            resultMap.put("back_url", url);
+        } catch (DisabledAccountException e) {
+            throw new ServiceException(ServiceCode.ACCOUNT_LOCK, "账号已经被锁定");
+        } catch (Exception e) {
+            throw new ServiceException(ServiceCode.USERNAME_PWD_ERROR, "用户名或密码错误");
         }
-        LOGGER.info(getClass() + " 获取登陆之前的URL:[%s], " + url);
-        if (StringUtils.isEmpty(url)) {
-            url = "/user/index";
-        }
-        resultMap.put("back_url", url);
         return ResultBean.format(resultMap);
+    }
+
+    @RequestMapping(value = "/user/index", method = RequestMethod.GET)
+    public ModelAndView userIndex() {
+        return new ModelAndView("user/index");
     }
 }

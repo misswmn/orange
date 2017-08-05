@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
@@ -24,40 +26,16 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class User implements Serializable {
     private static final long serialVersionUID = -3827268739415842545L;
-    /**
-     * id
-     */
-    private long id;
-    /**
-     * 用户名
-     */
+    private Long id;
+    @NotNull(message = "用户名不能为空")
+    @Pattern(regexp = "^[a-zA-Z]{5,20}$", message = "用户名格式不正确")
     private String username;
-    /**
-     * 密码
-     */
+    @NotNull(message = "密码不能为空")
     private String password;
-    /**
-     * 手机号
-     */
     private String mobile;
-    /**
-     * 地址
-     */
     private String address;
-    /**
-     * 创建时间
-     */
     private String createTime;
-    /**
-     * 最近更新时间
-     */
     private String lastUpdateTime;
-    /**
-     * 最近登录时间
-     */
     private String lastLoginTime;
-    /**
-     * 描述信息
-     */
     private String description;
 }

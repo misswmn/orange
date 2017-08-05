@@ -75,6 +75,7 @@ public class WebmvcConfig extends WebMvcConfigurerAdapter {
     public FreeMarkerViewResolver freeMarkerViewResolver() {
         FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
         viewResolver.setViewClass(FreeMarkerView.class);
+        viewResolver.setRequestContextAttribute("request");
         viewResolver.setContentType("text/html;charset=utf-8");
         viewResolver.setSuffix(".ftl");
         viewResolver.setCache(false);

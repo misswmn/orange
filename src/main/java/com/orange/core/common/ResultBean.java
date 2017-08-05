@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 public class ResultBean implements Serializable {
     private static final long serialVersionUID = 5647005206941206294L;
-    private int errorCode = ServiceCode.SUCCESS;
-    private String description = "Success";
+    private int code = ServiceCode.SUCCESS;
+    private String message = "Success";
     private String access_token;
     private Object content;
 
@@ -41,7 +41,7 @@ public class ResultBean implements Serializable {
         }
 
         public ResultBeanBuilder errorCode(int errorCode) {
-            this.resultBean.setErrorCode(errorCode);
+            this.resultBean.setCode(errorCode);
             return this;
         }
 
@@ -51,7 +51,7 @@ public class ResultBean implements Serializable {
         }
 
         public ResultBeanBuilder description(String description) {
-            this.resultBean.setDescription(description);
+            this.resultBean.setMessage(description);
             return this;
         }
 
@@ -65,20 +65,20 @@ public class ResultBean implements Serializable {
         }
     }
 
-    public int getErrorCode() {
-        return errorCode;
+    public int getCode() {
+        return code;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public String getDescription() {
-        return description;
+    public String getMessage() {
+        return message;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getAccess_token() {
