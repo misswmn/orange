@@ -19,7 +19,7 @@ import redis.clients.jedis.JedisPoolConfig;
 )
 @ComponentScan(basePackages = "com.orange.core", lazyInit = true, excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION,
         value = {Controller.class, ControllerAdvice.class, RestController.class})})
-@Import({AppDataConfig.class})
+@Import({AppDataConfig.class, ShiroConfig.class})
 public class WebAppConfig {
 
     @Value("${redis.host}")

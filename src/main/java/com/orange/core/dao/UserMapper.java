@@ -17,7 +17,8 @@ import java.util.List;
  */
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Long id);
-
     List<User> findAll();
+    int deleteByPrimaryKey(Long id);
+    User login(String username, String password);
+    int updateLastLoginTime(User user);
 }

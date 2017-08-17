@@ -6,7 +6,7 @@ import com.orange.core.common.ServiceCode;
 import com.orange.core.common.ServiceException;
 import com.orange.core.domain.User;
 import com.orange.core.shiro.token.manager.TokenManager;
-import org.apache.shiro.authc.DisabledAccountException;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
@@ -51,10 +51,8 @@ public class UserController {
                 url = "/user/index";
             }
             resultMap.put("back_url", url);
-        } catch (DisabledAccountException e) {
-            throw new ServiceException(ServiceCode.ACCOUNT_LOCK, "账号已经被锁定");
-        } catch (Exception e) {
-            throw new ServiceException(ServiceCode.USERNAME_PWD_ERROR, "用户名或密码错误");
+        } catch (AuthenticationException e) {
+            throw new ServiceException(ServiceCode.ACCOUNT_LOCK, e.getMessage());
         }
         return ResultBean.format(resultMap);
     }

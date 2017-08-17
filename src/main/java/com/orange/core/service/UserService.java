@@ -37,4 +37,20 @@ public interface UserService {
     void changePwd(@NotNull(message = "{common.param.illegal}") @Valid UserPassword user);
 
     void save(@NotNull(message = "{common.param.illegal}") @Valid Sample sample);
+
+    /**
+     * 登录
+     *
+     * @param username 用户名
+     * @param password 密码
+     * @return
+     */
+    User login(String username, String password);
+
+    /**
+     * 更新登录时间
+     *
+     * @param user
+     */
+    int updateLastLoginTime(User user);
 }
