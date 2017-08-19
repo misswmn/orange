@@ -58,4 +58,14 @@ public class UserServiceImpl implements UserService {
     public void save(Sample sample) {
         System.out.println("+++++++++++++++++++++");
     }
+
+    @Override
+    public User login(String username, String password) {
+        return null;
+    }
+
+    @Override
+    public void updateLastLoginTime(User user) {
+
+    }
 }

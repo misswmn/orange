@@ -37,4 +37,9 @@ public interface UserService {
     void changePwd(@NotNull(message = "{common.param.illegal}") @Valid UserPassword user);
 
     void save(@NotNull(message = "{common.param.illegal}") @Valid Sample sample);
+
+    User login(@NotNull(message = "{common.param.illegal}") String username,
+               @NotNull(message = "{common.param.illegal}") String password);
+
+    void updateLastLoginTime(User user);
 }

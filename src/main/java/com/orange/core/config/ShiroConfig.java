@@ -1,9 +1,6 @@
 package com.orange.core.config;
 
-import com.orange.core.shiro.CustomShiroSessionDAO;
-import com.orange.core.shiro.cache.CustomShiroCacheManager;
 import com.orange.core.shiro.filter.LoginFilter;
-import com.orange.core.shiro.session.CustomSessionManager;
 import com.orange.core.shiro.token.SampleRealm;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
@@ -16,7 +13,6 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -30,8 +26,6 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-    @Value("${cipher.key}")
-    private String cipherKey;
 
     @Bean
     public ShiroFilterFactoryBean shiroFilter() {
@@ -52,7 +46,7 @@ public class ShiroConfig {
         securityManager.setRealm(sampleRealm());
         securityManager.setSessionManager(sessionManager());
         securityManager.setRememberMeManager(rememberMeManager());
-        securityManager.setCacheManager(customShiroCacheManager());
+        securityManager.setCacheManager(null);
         return securityManager;
     }
 
@@ -61,20 +55,8 @@ public class ShiroConfig {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionValidationInterval(180_000_0);
         sessionManager.setGlobalSessionTimeout(180_000_0);
-        sessionManager.setSessionDAO(customShiroSessionDAO());
+        sessionManager.setSessionDAO(null);
         return sessionManager;
-    }
-
-    @Bean
-    public CustomShiroSessionDAO customShiroSessionDAO() {
-        CustomShiroSessionDAO customShiroSessionDAO = new CustomShiroSessionDAO();
-        customShiroSessionDAO.setSessionIdGenerator(sessionIdGenerator());
-        return customShiroSessionDAO;
-    }
-
-    @Bean
-    public CustomSessionManager customSessionManager() {
-        return null;
     }
 
     @Bean
@@ -85,7 +67,7 @@ public class ShiroConfig {
     @Bean
     public CookieRememberMeManager rememberMeManager() {
         CookieRememberMeManager rememberMeManager = new CookieRememberMeManager();
-        rememberMeManager.setCipherKey(Base64.decode(cipherKey));
+        rememberMeManager.setCipherKey(Base64.decode("fuck"));
         rememberMeManager.setCookie(rememberMeCookie());
         return rememberMeManager;
     }
@@ -99,11 +81,6 @@ public class ShiroConfig {
         cookie.setHttpOnly(true);
         cookie.setMaxAge(30 * 24 * 3600);
         return cookie;
-    }
-
-    @Bean
-    public CustomShiroCacheManager customShiroCacheManager() {
-        return new CustomShiroCacheManager();
     }
 
     @Bean

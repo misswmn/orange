@@ -36,7 +36,7 @@ public class SampleRealm extends AuthorizingRealm {
         User user = userService.login(shiroToken.getUsername(), new String(shiroToken.getPassword()));
         if (user == null) {
             throw new AccountException("用户名或密码不正确");
-        } else if (user.getStatus() == User.Status.DISABLE) {
+        } else if (user.getStatus() == User.Status.DISABLED) {
             throw new DisabledAccountException("该用户已经被冻结");
         } else {
             user.setLastUpdateTime(new Date());
