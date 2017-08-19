@@ -650,28 +650,4 @@ public final class JedisClient {
         }
     }
 
-    public synchronized String selectAndSet(int dbIndex, String key, String value, int seconds) {
-        jedis = jedisPool.getResource();
-        try {
-            jedis.select(dbIndex);
-            jedis = jedisPool.getResource();
-            jedis.select(dbIndex);
-            String result = jedis.set(key, value);
-            if (seconds > 0) {
-                jedis.expire(key, seconds);
-            }
-            return result;
-        } catch (JedisConnectionException e) {
-            if (jedis != null) {
-                jedis.close();
-                jedis = null;
-            }
-            throw e;
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-                jedis = null;
-            }
-        }
-    }
 }

@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author wangmn
@@ -35,28 +34,8 @@ public class User implements Serializable {
     private String password;
     private String mobile;
     private String address;
-    private Status status;
-    private Date createTime;
-    private Date lastUpdateTime;
-    private Date lastLoginTime;
+    private String createTime;
+    private String lastUpdateTime;
+    private String lastLoginTime;
     private String description;
-
-    public enum Status {
-        NORMAL(0, "正常"), DISABLE(1, "冻结");
-        private int code;
-        private String desc;
-
-        Status(int code, String desc) {
-            this.code = code;
-            this.desc = desc;
-        }
-
-        public int getCode() {
-            return code;
-        }
-
-        public String getDesc() {
-            return desc;
-        }
-    }
 }

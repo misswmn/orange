@@ -11,9 +11,9 @@ import com.orange.core.spring.bean.ClientDTO;
 import com.orange.core.spring.bean.Sample;
 import com.orange.core.spring.bean.Simple;
 import com.orange.core.spring.bean.UserPassword;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -25,7 +25,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Inject
+    @Autowired
     private UserMapper userMapper;
 
     @Override
@@ -51,20 +51,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changePwd(UserPassword user) {
         System.out.println("+++++++++++++++++++++");
+
     }
 
     @Override
     public void save(Sample sample) {
         System.out.println("+++++++++++++++++++++");
-    }
-
-    @Override
-    public User login(String username, String password) {
-        return userMapper.login(username, password);
-    }
-
-    @Override
-    public int updateLastLoginTime(User user) {
-        return userMapper.updateLastLoginTime(user);
     }
 }
