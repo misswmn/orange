@@ -1,8 +1,3 @@
-/*
- * Copyright (C) 2016 YuWei. All rights reserved.
- * You can get our information at http://www.zhixindu.com
- * Anyone can't use this file without our permission.
- */
 package com.orange.core.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -11,6 +6,8 @@ import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.sql.DataSource;
@@ -22,6 +19,9 @@ import java.sql.SQLException;
  * @date 2017/4/26
  * @description
  */
+@PropertySources(
+        @PropertySource(value = {"classpath*:orange.properties"})
+)
 @Configuration
 public class AppDataConfig {
     @Value("${jdbc.url}")
