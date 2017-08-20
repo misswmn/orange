@@ -40,7 +40,7 @@ public class UserServiceTest {
 
     @Test
     public void testDeleteById() {
-        userService.delete("");
+        userService.delete("11");
     }
 
     @Test

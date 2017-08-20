@@ -15,7 +15,7 @@
             create_time,
             last_login_time,
             last_update_time,
-            message
+            description
         FROM
             USER
     </select>
@@ -29,6 +29,6 @@
         <id property="createTime" column="create_time"/>
         <id property="lastLoginTime" column="last_login_time"/>
         <id property="lastUpdateTime" column="last_update_time"/>
-        <id property="message" column="message"/>
+        <id property="description" column="description"/>
     </resultMap>
 </mapper>
