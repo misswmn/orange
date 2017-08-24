@@ -1,4 +1,4 @@
-package com.orange.core.page;
+package com.orange.core.page.mongo;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.Query;

@@ -1,4 +1,5 @@
 package com.orange.core.page;
+package com.orange.core.page.mongo;
 
 import java.util.ArrayList;
 import java.util.List;

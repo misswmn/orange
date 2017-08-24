@@ -1,4 +1,4 @@
-package com.orange.core.page;
+package com.orange.core.page.mongo;
 
 /**
  * @author wangmn
