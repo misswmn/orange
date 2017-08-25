@@ -1,7 +1,11 @@
 package com.orange.core.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.orange.core.page.common.repository.DefaultPageRepository;
+import com.orange.core.page.common.repository.PageRepository;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -77,5 +81,15 @@ public class DataSourceConfig {
         sessionFactory.setTypeAliasesPackage("com.orange.core.domain");
         sessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
         return sessionFactory;
+    }
+
+    @Bean
+    public SqlSession sqlSession() throws Exception {
+        return new SqlSessionTemplate(sqlSessionFactory().getObject());
+    }
+
+    @Bean
+    public PageRepository pageRepository() throws Exception {
+        return new DefaultPageRepository<>(sqlSession());
     }
 }
