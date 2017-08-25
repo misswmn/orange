@@ -1,6 +1,8 @@
 package com.orange.core.dao;
 
 import com.orange.core.domain.User;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +15,9 @@ import java.util.List;
  */
 @Repository
 public interface UserMapper {
+    @Update("UPDATE USER SET status='01' WHERE id=#{id}")
     int deleteByPrimaryKey(Long id);
 
+    @Select("SELECT * FROM user")
     List<User> findAll();
 }
