@@ -49,12 +49,13 @@ public class WebAppConfig {
         return jedisClient;
     }
 
-    private JedisPool jedisPool() {
+    @Bean
+    public JedisPool jedisPool() {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxIdle(redisMaxIdle);
         jedisPoolConfig.setMinIdle(redisMinIdle);
         jedisPoolConfig.setMaxTotal(redisMaxTotal);
         jedisPoolConfig.setMaxWaitMillis(redisMaxWaitMillis);
-        return new JedisPool(jedisPoolConfig, host, port, redisTimeout, redisPassword, redisDatabase);
+        return new JedisPool(jedisPoolConfig, host, port, redisTimeout);
     }
 }

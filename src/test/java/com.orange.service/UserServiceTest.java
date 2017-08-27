@@ -10,12 +10,14 @@ import com.orange.core.spring.bean.Role;
 import com.orange.core.spring.bean.Sample;
 import com.orange.core.spring.bean.Simple;
 import com.orange.core.spring.bean.UserPassword;
+import com.orange.core.util.JedisClient;
 import com.orange.core.util.JsonUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import redis.clients.jedis.JedisPool;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -37,6 +39,8 @@ public class UserServiceTest {
     private UserService userService;
     @Inject
     private RoleService roleService;
+    @Inject
+    private JedisClient jedisClient;
 
     @Test
     public void testDeleteById() {
@@ -85,6 +89,11 @@ public class UserServiceTest {
         sample.setCount(8);
         sample.setEnabled(true);
         userService.save(sample);
+    }
+
+    @Test
+    public void testJedis(){
+        jedisClient.set("product", "FFFFFFUCK");
     }
 }
 

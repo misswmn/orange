@@ -16,12 +16,12 @@ import java.util.Date;
  * @author wangmn
  * @date 2017/8/5
  */
-public class SampleRealm extends AuthorizingRealm {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SampleRealm.class);
+public class DefaultRealm extends AuthorizingRealm {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultRealm.class);
     @Autowired
     private UserService userService;
 
-    public SampleRealm() {
+    public DefaultRealm() {
         super();
     }
 
@@ -42,6 +42,6 @@ public class SampleRealm extends AuthorizingRealm {
             user.setLastUpdateTime(new Date());
             userService.updateLastLoginTime(user);
         }
-        return new SimpleAuthenticationInfo(user, user.getUsername(), getName());
+        return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
     }
 }

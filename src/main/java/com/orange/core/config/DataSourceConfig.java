@@ -6,14 +6,15 @@ import com.orange.core.page.common.repository.PageRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+@MapperScan("com.orange.core.dao")
 @Configuration
 public class DataSourceConfig {
     @Value("${jdbc.url}")
@@ -79,7 +80,6 @@ public class DataSourceConfig {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setTypeAliasesPackage("com.orange.core.domain");
-        sessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
         return sessionFactory;
     }
 

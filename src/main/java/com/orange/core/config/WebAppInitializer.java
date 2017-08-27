@@ -2,6 +2,7 @@ package com.orange.core.config;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
@@ -38,5 +39,9 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     private CharacterEncodingFilter encodingFilter() {
         return new CharacterEncodingFilter("UTF-8", true);
+    }
+
+    private DelegatingFilterProxy shiroFilterProxy() {
+        return new DelegatingFilterProxy();
     }
 }

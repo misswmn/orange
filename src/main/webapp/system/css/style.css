@@ -25,8 +25,8 @@ body {
 
 .login-form {
     /*font: 16px/2em Lato, serif;*/
-    margin: 180px auto;
-    max-width: 400px;
+    margin: 120px auto;
+    max-width: 340px;
 }
 
 form[role=login] {
@@ -35,7 +35,7 @@ form[role=login] {
     padding: 26px;
     border-radius: 10px;
     -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
+    -webkit-border-radius: 1px;
 }
 
 form[role=login] img {
