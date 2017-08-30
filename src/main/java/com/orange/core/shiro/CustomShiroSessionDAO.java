@@ -15,12 +15,15 @@ public class CustomShiroSessionDAO extends AbstractSessionDAO {
 
     @Override
     protected Serializable doCreate(Session session) {
-        return null;
+        Serializable sessionId = this.generateSessionId(session);
+        this.assignSessionId(session, sessionId);
+        jedisShiroSessionRepository.saveSession(session);
+        return sessionId;
     }
 
     @Override
     protected Session doReadSession(Serializable sessionId) {
-        return null;
+        return jedisShiroSessionRepository.getSession(sessionId);
     }
 
     @Override

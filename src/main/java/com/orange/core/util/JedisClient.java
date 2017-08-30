@@ -109,6 +109,36 @@ public final class JedisClient {
     }
 
     /**
+     * 向redis存入key和value,并释放连接资源
+     *
+     * @param key
+     * @param value
+     * @param seconds
+     * @return
+     */
+    public synchronized String set(byte[] key, byte[] value, int seconds) {
+        try {
+            jedis = jedisPool.getResource();
+            String result = jedis.set(key, value);
+            if (seconds > 0)
+                jedis.expire(key, seconds);
+            return result;
+        } catch (JedisConnectionException e) {
+            if (jedis != null) {
+                jedis.close();
+                jedis = null;
+            }
+            throw e;
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+                jedis = null;
+            }
+        }
+    }
+
+
+    /**
      * 通过key获取在redis中的value
      *
      * @param key
@@ -131,7 +161,23 @@ public final class JedisClient {
             }
         }
     }
-
+    public synchronized byte[] get(byte[] key) {
+        try {
+            jedis = jedisPool.getResource();
+            return jedis.get(key);
+        } catch (JedisConnectionException e) {
+            if (jedis != null) {
+                jedis.close();
+                jedis = null;
+            }
+            throw e;
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+                jedis = null;
+            }
+        }
+    }
     /**
      * 通过key获取删除在redis中的value
      *
