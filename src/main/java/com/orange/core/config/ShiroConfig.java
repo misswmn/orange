@@ -2,12 +2,10 @@ package com.orange.core.config;
 
 import com.orange.core.shiro.CustomShiroSessionDAO;
 import com.orange.core.shiro.filter.LoginFilter;
-import com.orange.core.shiro.listener.CustomSessionListener;
 import com.orange.core.shiro.token.DefaultRealm;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
-import org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler;
 import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -15,13 +13,11 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,9 +27,6 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-
-    @Value("${session.interval}")
-    private Long interVal;
 
     @Bean
     public ShiroFilterFactoryBean shiroFilter() {
@@ -64,8 +57,8 @@ public class ShiroConfig {
         sessionManager.setSessionValidationInterval(180_000_0);
         sessionManager.setGlobalSessionTimeout(180_000_0);
         sessionManager.setSessionDAO(customShiroSessionDAO());
-        sessionManager.setSessionListeners(Arrays.asList(customSessionListener()));
-        sessionManager.setSessionValidationScheduler(serviceSessionValidationScheduler());
+//        sessionManager.setSessionListeners(Arrays.asList(customSessionListener()));
+//        sessionManager.setSessionValidationScheduler(serviceSessionValidationScheduler());
         sessionManager.setSessionValidationSchedulerEnabled(true);
         sessionManager.setDeleteInvalidSessions(true);
         sessionManager.setSessionIdCookie(cookie());
@@ -80,18 +73,18 @@ public class ShiroConfig {
         return cookie;
     }
 
-    @Bean
+    /*@Bean
     public ExecutorServiceSessionValidationScheduler serviceSessionValidationScheduler() {
         ExecutorServiceSessionValidationScheduler sessionValidationScheduler = new ExecutorServiceSessionValidationScheduler();
         sessionValidationScheduler.setInterval(interVal);
         sessionValidationScheduler.setSessionManager(sessionManager());
         return sessionValidationScheduler;
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public CustomSessionListener customSessionListener() {
         return new CustomSessionListener();
-    }
+    }*/
 
     @Bean
     public CustomShiroSessionDAO customShiroSessionDAO() {

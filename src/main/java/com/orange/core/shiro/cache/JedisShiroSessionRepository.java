@@ -3,11 +3,13 @@ package com.orange.core.shiro.cache;
 import com.orange.core.shiro.session.ShiroSessionRepository;
 import com.orange.core.util.JedisClient;
 import org.apache.shiro.session.Session;
+import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.Collection;
 
+@Component
 public class JedisShiroSessionRepository implements ShiroSessionRepository {
     @Inject
     private JedisClient jedisClient;
