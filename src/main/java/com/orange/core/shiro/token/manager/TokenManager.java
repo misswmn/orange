@@ -11,8 +11,8 @@ import org.apache.shiro.session.Session;
  */
 public class TokenManager {
 
-    public static User login(User user, Boolean rememberMe) {
-        ShiroToken token = new ShiroToken(user.getUsername(), user.getPassword(), rememberMe);
+    public static User login(User user) {
+        ShiroToken token = new ShiroToken(user.getUsername(), user.getPassword(), user.isRememberMe());
         SecurityUtils.getSubject().login(token);
         return getCurrentUser();
     }

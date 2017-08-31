@@ -28,6 +28,7 @@ public class User implements Serializable {
     private String username;
     @NotNull(message = "密码不能为空")
     private String password;
+    private boolean rememberMe;
     private String mobile;
     private String address;
     private Status status;

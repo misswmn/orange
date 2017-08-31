@@ -78,9 +78,11 @@
                 $("body").mLoading("hide");
                 console.log(data);
                 if (data.code == 0) {
-                    location.href = data.content.back_url ? ${base}/ + data.content.back_url : ${base}/;
+                    location.href = data.content ? ${base}/ + data.content : ${base}/;
                 } else {
-                    alert("用户名或密码错误");
+                    $(".error").html(data.message || "登录失败");
+                    $("#username").focus().val("");
+                    $("#password").val("");
                 }
             }, "json");
         });
