@@ -74,14 +74,14 @@
                 rememberMe: $("#rememberMe").is(":checked")
             };
             $("body").mLoading();
-            $.post("${base}/login", data, function (data) {
+            $.post("${base}/user/login", data, function (data) {
                 $("body").mLoading("hide");
                 console.log(data);
                 if (data.code == 0) {
                     location.href = data.content ? ${base}/ + data.content : ${base}/;
                 } else {
                     $(".error").html(data.message || "登录失败");
-                    $("#username").focus().val("");
+                    $("#username").focus();
                     $("#password").val("");
                 }
             }, "json");
