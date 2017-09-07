@@ -50,7 +50,8 @@
                 <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
                 <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-                <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true"
+                    data-slide-speed="200" style="padding-top: 20px">
                     <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
                     <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
                     <li class="sidebar-toggler-wrapper hide">
@@ -197,22 +198,28 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item ">
-                                        <a href="page_user_login_1.html" class="nav-link " target="_blank"> Login Page 1 </a>
+                                        <a href="page_user_login_1.html" class="nav-link " target="_blank"> Login Page
+                                            1 </a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a href="page_user_login_2.html" class="nav-link " target="_blank"> Login Page 2 </a>
+                                        <a href="page_user_login_2.html" class="nav-link " target="_blank"> Login Page
+                                            2 </a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a href="page_user_login_3.html" class="nav-link " target="_blank"> Login Page 3 </a>
+                                        <a href="page_user_login_3.html" class="nav-link " target="_blank"> Login Page
+                                            3 </a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a href="page_user_login_4.html" class="nav-link " target="_blank"> Login Page 4 </a>
+                                        <a href="page_user_login_4.html" class="nav-link " target="_blank"> Login Page
+                                            4 </a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a href="page_user_login_5.html" class="nav-link " target="_blank"> Login Page 5 </a>
+                                        <a href="page_user_login_5.html" class="nav-link " target="_blank"> Login Page
+                                            5 </a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a href="page_user_login_6.html" class="nav-link " target="_blank"> Login Page 6 </a>
+                                        <a href="page_user_login_6.html" class="nav-link " target="_blank"> Login Page
+                                            6 </a>
                                     </li>
                                 </ul>
                             </li>
@@ -471,141 +478,4 @@
         <div class="page-content-wrapper">
             <!-- BEGIN CONTENT BODY -->
             <div class="page-content" style="min-height: 1150px;">
-                <!-- BEGIN PAGE HEADER-->
-                <!-- BEGIN THEME PANEL -->
-                <div class="theme-panel hidden-xs hidden-sm">
-                    <div class="toggler"> </div>
-                    <div class="toggler-close"> </div>
-                    <div class="theme-options">
-                        <div class="theme-option theme-colors clearfix">
-                            <span> THEME COLOR </span>
-                            <ul>
-                                <li class="color-default current tooltips" data-style="default" data-container="body" data-original-title="Default"> </li>
-                                <li class="color-darkblue tooltips" data-style="darkblue" data-container="body" data-original-title="Dark Blue"> </li>
-                                <li class="color-blue tooltips" data-style="blue" data-container="body" data-original-title="Blue"> </li>
-                                <li class="color-grey tooltips" data-style="grey" data-container="body" data-original-title="Grey"> </li>
-                                <li class="color-light tooltips" data-style="light" data-container="body" data-original-title="Light"> </li>
-                                <li class="color-light2 tooltips" data-style="light2" data-container="body" data-html="true" data-original-title="Light 2"> </li>
-                            </ul>
-                        </div>
-                        <div class="theme-option">
-                            <span> Theme Style </span>
-                            <select class="layout-style-option form-control input-sm">
-                                <option value="square" selected="selected">Square corners</option>
-                                <option value="rounded">Rounded corners</option>
-                            </select>
-                        </div>
-                        <div class="theme-option">
-                            <span> Layout </span>
-                            <select class="layout-option form-control input-sm">
-                                <option value="fluid" selected="selected">Fluid</option>
-                                <option value="boxed">Boxed</option>
-                            </select>
-                        </div>
-                        <div class="theme-option">
-                            <span> Header </span>
-                            <select class="page-header-option form-control input-sm">
-                                <option value="fixed" selected="selected">Fixed</option>
-                                <option value="default">Default</option>
-                            </select>
-                        </div>
-                        <div class="theme-option">
-                            <span> Top Menu Dropdown</span>
-                            <select class="page-header-top-dropdown-style-option form-control input-sm">
-                                <option value="light" selected="selected">Light</option>
-                                <option value="dark">Dark</option>
-                            </select>
-                        </div>
-                        <div class="theme-option">
-                            <span> Sidebar Mode</span>
-                            <select class="sidebar-option form-control input-sm">
-                                <option value="fixed">Fixed</option>
-                                <option value="default" selected="selected">Default</option>
-                            </select>
-                        </div>
-                        <div class="theme-option">
-                            <span> Sidebar Menu </span>
-                            <select class="sidebar-menu-option form-control input-sm">
-                                <option value="accordion" selected="selected">Accordion</option>
-                                <option value="hover">Hover</option>
-                            </select>
-                        </div>
-                        <div class="theme-option">
-                            <span> Sidebar Style </span>
-                            <select class="sidebar-style-option form-control input-sm">
-                                <option value="default" selected="selected">Default</option>
-                                <option value="light">Light</option>
-                            </select>
-                        </div>
-                        <div class="theme-option">
-                            <span> Sidebar Position </span>
-                            <select class="sidebar-pos-option form-control input-sm">
-                                <option value="left" selected="selected">Left</option>
-                                <option value="right">Right</option>
-                            </select>
-                        </div>
-                        <div class="theme-option">
-                            <span> Footer </span>
-                            <select class="page-footer-option form-control input-sm">
-                                <option value="fixed">Fixed</option>
-                                <option value="default" selected="selected">Default</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <!-- END THEME PANEL -->
-                <!-- BEGIN PAGE BAR -->
-                <div class="page-bar">
-                    <ul class="page-breadcrumb">
-                        <li>
-                            <a href="index.html">Home</a>
-                            <i class="fa fa-circle"></i>
-                        </li>
-                        <li>
-                            <span>Tables</span>
-                        </li>
-                    </ul>
-                    <div class="page-toolbar">
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-                                <i class="fa fa-angle-down"></i>
-                            </button>
-                            <ul class="dropdown-menu pull-right" role="menu">
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-bell"></i> Action</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-shield"></i> Another action</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-user"></i> Something else here</a>
-                                </li>
-                                <li class="divider"> </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-bag"></i> Separated link</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- END PAGE BAR -->
-                <!-- BEGIN PAGE TITLE-->
-                <h1 class="page-title"> Basic Bootstrap Tables
-                    <small>basic bootstrap tables with various options and styles</small>
-                </h1>
-                <!-- END PAGE TITLE-->
-            </div>
-            <!-- END CONTENT BODY -->
-        </div>
-        <!-- END CONTENT -->
-        <!-- BEGIN QUICK SIDEBAR -->
-        <a href="javascript:;" class="page-quick-sidebar-toggler">
-            <i class="icon-login"></i>
-        </a>
-        <!-- END QUICK SIDEBAR -->
-    </div>
-</div>
+

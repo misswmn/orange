@@ -1,3 +1,14 @@
+</div>
+<!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
+<!-- BEGIN QUICK SIDEBAR -->
+<a href="javascript:;" class="page-quick-sidebar-toggler">
+    <i class="icon-login"></i>
+</a>
+<!-- END QUICK SIDEBAR -->
+</div>
+</div>
 <!-- BEGIN CORE PLUGINS -->
 <script src="system/js/jquery.js" type="text/javascript"></script>
 <script src="system/bootstrap/js/bootstrap.js" type="text/javascript"></script>
