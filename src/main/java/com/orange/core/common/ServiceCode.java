@@ -1,11 +1,5 @@
 package com.orange.core.common;
 
-/**
- * @author Richard Xue
- * @version 1.0
- * @date 03/12/2016
- * @description
- */
 public interface ServiceCode {
     // Common
     int SUCCESS = 0;

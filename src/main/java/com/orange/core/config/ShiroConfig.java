@@ -33,7 +33,7 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager());
         shiroFilter.setLoginUrl("/");
-        shiroFilter.setSuccessUrl("/user/index");
+        shiroFilter.setSuccessUrl("/main");
         shiroFilter.setUnauthorizedUrl("/");
         Map<String, Filter> filterMap = new HashMap<>();
         filterMap.put("login", loginFilter());

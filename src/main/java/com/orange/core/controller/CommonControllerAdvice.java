@@ -18,12 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.IOException;
 import java.text.MessageFormat;
 
-/**
- * @author Richard Xue
- * @version 1.0
- * @date 06/08/2017
- * @description
- */
 @ControllerAdvice
 public class CommonControllerAdvice {
 

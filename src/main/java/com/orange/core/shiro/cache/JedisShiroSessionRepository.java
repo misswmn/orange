@@ -19,7 +19,7 @@ import java.util.Collection;
 @Component
 public class JedisShiroSessionRepository implements ShiroSessionRepository {
     private static final Logger LOGGER = LoggerFactory.getLogger(JedisShiroSessionRepository.class);
-    private static final String REDIS_SHIRO_SESSION = "orange_shiro_session";
+    private static final String REDIS_SHIRO_SESSION = "orange_session_";
     private static final int SESSION_VAL_TIME_SPAN = 18 * 1000;
     @Inject
     private JedisClient jedisClient;
