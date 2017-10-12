@@ -1,7 +1,7 @@
 package com.orange.core.business;
 
 import com.orange.core.common.Business;
-import com.orange.core.common.ServiceCode;
+import com.orange.core.common.ResponseEnum;
 import com.orange.core.common.ServiceException;
 import com.orange.core.domain.User;
 import com.orange.core.shiro.token.manager.TokenManager;
@@ -32,9 +32,9 @@ public class LoginBusinessImpl implements LoginBusiness {
             }
             return "main";
         } catch (DisabledAccountException e) {
-            throw new ServiceException(ServiceCode.ACCOUNT_LOCK, "账号已经被锁定");
+            throw new ServiceException(ResponseEnum.ACCOUNT_LOCK);
         } catch (AuthenticationException e) {
-            throw new ServiceException(ServiceCode.USERNAME_PWD_ERROR, "用户名或密码错误");
+            throw new ServiceException(ResponseEnum.USERNAME_PWD_ERROR);
         }
     }
 }

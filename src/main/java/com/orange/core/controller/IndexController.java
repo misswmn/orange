@@ -1,6 +1,5 @@
 package com.orange.core.controller;
 
-import com.orange.core.config.BaseController;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

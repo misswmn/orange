@@ -18,7 +18,7 @@ public class PermissionController {
     @Inject
     private PermissionSupportBusiness permissionSupportBusiness;
 
-    @RequestMapping(value = {"/load"}, method = RequestMethod.GET, name = "记载所有权限资源")
+    @RequestMapping(value = {"/load"}, method = RequestMethod.GET, name = "加载所有权限资源")
     public ResultBean listPermission() {
         return ResultBean.format(permissionSupportBusiness.getRequestMapping());
     }

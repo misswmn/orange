@@ -1,6 +1,6 @@
 package com.orange.core.common.aop;
 
-import com.orange.core.common.ServiceCode;
+import com.orange.core.common.ResponseEnum;
 import com.orange.core.common.ServiceException;
 import com.orange.core.util.JsonUtils;
 import org.apache.commons.lang.StringUtils;
@@ -58,7 +58,7 @@ public class LogAspect {
                 if (result.hasErrors()) {
                     List<String> errorMessage = result.getAllErrors().stream().map(oe -> oe.getDefaultMessage()).collect(Collectors.toList());
                     LOGGER.error(MessageFormat.format("{0}.{1} => {2}", name, method, errorMessage));
-                    throw new ServiceException(ServiceCode.ILLEGAL_PARAM, StringUtils.join(errorMessage, ","));
+                    throw new ServiceException(ResponseEnum.ILLEGAL_PARAM, StringUtils.join(errorMessage, ","));
                 }
             }
         }

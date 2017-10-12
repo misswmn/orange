@@ -1,6 +1,6 @@
 package com.orange.core.shiro.cache;
 
-import com.orange.core.common.ServiceCode;
+import com.orange.core.common.ResponseEnum;
 import com.orange.core.common.ServiceException;
 import com.orange.core.shiro.session.CustomSessionManager;
 import com.orange.core.shiro.session.SessionStatus;
@@ -27,7 +27,7 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
     @Override
     public void saveSession(Session session) {
         if (session == null || session.getId() == null) {
-            throw new ServiceException(ServiceCode.ILLEGAL_PARAM, "");
+            throw new ServiceException(ResponseEnum.ILLEGAL_PARAM, "");
         }
         if (session.getAttribute(CustomSessionManager.SESSION_STATUS) == null) {
             SessionStatus sessionStatus = new SessionStatus();

@@ -4,11 +4,6 @@ public class ServiceException extends RuntimeException {
     private static final long serialVersionUID = -2009543102000237915L;
     private int code;
 
-    public ServiceException(int code, String message) {
-        super(message);
-        this.code = code;
-    }
-
     public ServiceException(int code, Throwable cause) {
         super(cause);
         this.code = code;
@@ -17,6 +12,21 @@ public class ServiceException extends RuntimeException {
     public ServiceException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
+    }
+
+    public ServiceException(ResponseEnum responseEnum) {
+        super(responseEnum.getMsg());
+        this.code = responseEnum.getCode();
+    }
+
+    public ServiceException(ResponseEnum responseEnum, String msg) {
+        super(msg);
+        this.code = responseEnum.getCode();
+    }
+
+    public ServiceException(ResponseEnum responseEnum, Throwable cause) {
+        super(responseEnum.getMsg(), cause);
+        this.code = responseEnum.getCode();
     }
 
     public int getCode() {
